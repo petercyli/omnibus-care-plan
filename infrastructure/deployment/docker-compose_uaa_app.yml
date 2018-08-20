@@ -1,0 +1,29 @@
+version: '3.4'
+services:
+  uaa.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/uaa-ocp:${UAA_OCP_VERSION}
+    volumes:
+      - ${UAA_BASE_PATH}/java/OCP_LOGS/uaa:/java/OCP_LOGS/uaa
+      - ${UAA_BASE_PATH}/java/OCP_PROPS/uaa/uaa.yml:/java/OCP_PROPS/uaa/uaa.yml
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx700m -Xss1m
+      TZ: "US/Eastern"
+      UAA_DB_PASSSWORD: ${UAA_DB_PASSWORD}
+      UAA_DB_USER: ${UAA_DB_USER}
+      UAA_APP_PORT: 80
+      UAA_DB_HOST: ${UAA_DB_HOST}
+      UAA_DB_PORT: ${UAA_DB_PORT}
+      UAA_SMTP_HOST: ${UAA_SMTP_HOST}
+      UAA_SMTP_PORT: ${UAA_SMTP_PORT}
+      UAA_SMTP_USER: ${UAA_SMTP_USER}
+      UAA_SMTP_PASSWORD: ${UAA_SMTP_PASSWORD}
+    ports:
+      - 80:8080
+    restart: always
+
+  adminer.ocp.com:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
