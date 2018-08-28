@@ -1,0 +1,164 @@
+version: '3'
+services:
+  ocp-config-server.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-config-server:${OCP_CONFIG_SERVER_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-config-server:/java/OCP_LOGS/ocp-config-server
+      - ${OCP_BASE_PATH}/java/OCP_PROPS/ocp-config-data-private:/java/ocp-config-data-private
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+      spring.cloud.config.server.git.uri: file:/java/ocp-config-data-private
+    command: --spring.profiles.active=${ENV_APP_PROFILE}
+    restart: always
+
+  ocp-discovery-server.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-discovery-server:${OCP_DISCOVERY_SERVER_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-discovery-server:/java/OCP_LOGS/ocp-discovery-server
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+    ports:
+      - "8761:8761"
+    command: --spring.profiles.active=${ENV_APP_PROFILE}
+    restart: always
+
+  ocp-edge-server.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-edge-server:${OCP_EDGE_SERVER_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-edge-server:/java/OCP_LOGS/ocp-edge-server
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+    ports:
+      - "80:80"
+    command: --spring.profiles.active=${ENV_APP_PROFILE}
+    restart: always
+
+  ocp-fis.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-fis:${OCP_FIS_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-fis:/java/OCP_LOGS/ocp-fis
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+    command: --spring.profiles.active=${ENV_APP_PROFILE}
+    ports:
+      - "8444:8444"
+    restart: always
+
+  ocp-ui.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-ui:${OCP_UI_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-ui:/java/OCP_LOGS/ocp-ui
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx700m -Xss1m
+      TZ: "US/Eastern"
+    restart: always
+
+  ocp-ui-api.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-ui-api:${OCP_UI_API_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-ui-api:/java/OCP_LOGS/ocp-ui-api
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx1024m -Xss1m
+    command: --spring.profiles.active=${ENV_APP_PROFILE}
+    restart: always
+
+  smart-core.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/smart-core:${SMART_CORE_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/smart-core:/java/OCP_LOGS/smart-core
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+    command: --spring.profiles.active=${ENV_APP_PROFILE} --eureka.client.service-url.defaultZone=http://ocp-discovery-server.ocp.com:8761/eureka/
+    restart: always
+    ports:
+      - "8081:8445"
+
+  smart-gateway.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/smart-gateway:${SMART_GATEWAY_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/smart-gateway:/java/OCP_LOGS/smart-gateway
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+    command: --spring.profiles.active=${ENV_APP_PROFILE} --eureka.client.service-url.defaultZone=http://ocp-discovery-server.ocp.com:8761/eureka/
+    restart: always
+
+  redis.ocp.com:
+    image: redis:4.0.9-alpine
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+    restart: always
+
+  c2s-sof-api.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/c2s-sof-api:${C2S_SOF_API_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/c2s-sof-api:/java/OCP_LOGS/c2s-sof-api
+      - ${OCP_BASE_PATH}/java/OCP_PROPS/ocp-config-data-private:/java/ocp-config-data-private
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+    command: --spring.profiles.active=${ENV_APP_PROFILE} --eureka.client.service-url.defaultZone=http://ocp-discovery-server.ocp.com:8761/eureka/ --c2s-sof-ui-config.launch-uri=https://ocpdemo.consent2share.org/c2s-sof-ui/launch --c2s-sof-ui-config.redirect-uri=https://ocpdemo.consent2share.org/c2s-sof-ui --c2s-sof-api.fhir.serverUrl=https://ocp.consent2share.org/fhir/baseDstu3
+    restart: always
+
+  c2s-sof-ui.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/c2s-sof-ui:${C2S_SOF_UI_VERSION}
+    volumes:
+      - ${OCP_BASE_PATH}/java/OCP_LOGS/c2s-sof-ui:/java/OCP_LOGS/c2s-sof-ui
+    environment:
+      API_ENDPOINT: c2s-sof-api.ocp.com:8451
+    restart: always
+    ports:
+      - "9001:9000"
+
+  uaa.ocp.com:
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/uaa-ocp:${UAA_OCP_VERSION}
+    volumes:
+      - ${UAA_BASE_PATH}/java/OCP_LOGS/uaa:/java/OCP_LOGS/uaa
+      - ${UAA_BASE_PATH}/java/OCP_PROPS/uaa/uaa.yml:/java/OCP_PROPS/uaa/uaa.yml
+    environment:
+      JAVA_OPTS: -Xms512m -Xmx700m -Xss1m
+      TZ: "US/Eastern"
+      UAA_DB_PASSSWORD: ${UAA_DB_PASSWORD}
+      UAA_DB_USER: ${UAA_DB_USER}
+      UAA_APP_PORT: 80
+      UAA_DB_HOST: ${UAA_DB_HOST}
+      UAA_DB_PORT: ${UAA_DB_PORT}
+      UAA_SMTP_HOST: ${UAA_SMTP_HOST}
+      UAA_SMTP_PORT: ${UAA_SMTP_PORT}
+      UAA_SMTP_USER: ${UAA_SMTP_USER}
+      UAA_SMTP_PASSWORD: ${UAA_SMTP_PASSWORD}
+    ports:
+      - 80:8080
+    restart: always
+
+  adminer.ocp.com:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  fhir.c2s.com:
+    image: bhits/hapi-fhir-jpaserver:3.4.0
+    environment:
+      TZ: "US/Eastern"
+      CATALINA_OPTS: -Din=jdbc:postgresql://fhir-db.c2s.com:5432/fhir?autoReconnect=true -Dpd=${FHIR_DB_PASSWORD} -Xms512m -Xmx1024m -Xss1m
+    ports:
+      - "8082:8080"
+    mem_limit: 1024m
+    restart: always
+
+  fhir-db.c2s.com:
+    image: postgres:10
+    environment:
+      TZ: "US/Eastern"
+      POSTGRES_PASSWORD: ${FHIR_DB_PASSWORD}
+      POSTGRES_DB: fhir
+    restart: always
+
+  uaa-db.c2s.com:
+    image: postgres:10
+    environment:
+      TZ: "US/Eastern"
+      POSTGRES_PASSWORD: ${UAA_DB_PASSWORD}
+      POSTGRES_DB: uaa
+    restart: always
+
+

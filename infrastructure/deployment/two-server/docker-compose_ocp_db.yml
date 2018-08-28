@@ -1,0 +1,21 @@
+version: '3'
+services:
+  fhir-db.c2s.com:
+    image: postgres:10
+    environment:
+      TZ: "US/Eastern"
+      POSTGRES_PASSWORD: ${FHIR_DB_PASSWORD}
+      POSTGRES_DB: fhir
+    ports:
+      - "5432:5432"
+    restart: always
+
+  uaa-db.c2s.com:
+    image: postgres:10
+    environment:
+      TZ: "US/Eastern"
+      POSTGRES_PASSWORD: ${UAA_DB_PASSWORD}
+      POSTGRES_DB: uaa
+    ports:
+      - "5433:5432"
+    restart: always
