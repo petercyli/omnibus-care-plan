@@ -46,6 +46,7 @@ sudo su << SudoUser
 
         # Start Docker
         service docker start
+        systemctl enable docker
         echo 'docker install done'
      }
 
@@ -67,7 +68,7 @@ sudo su << SudoUser
        docker --version
 
        # Test docker compose installation
-       echo 'docker-compose version: ' 
+       echo 'docker-compose version: '
        docker-compose --version
      }
     # Start running script
