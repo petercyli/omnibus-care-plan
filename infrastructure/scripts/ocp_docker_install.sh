@@ -1,6 +1,6 @@
 #!/bin/bash -x
-dockerVersion=17.03.1.ce-1.el7.centos
-dockerComposeVersion=1.13.0
+dockerVersion=18.03.0.ce
+dockerComposeVersion=1.22.0
 
 sudo su << SudoUser
     #Install 1.13.0-1.el7.centos docker version
@@ -46,28 +46,34 @@ sudo su << SudoUser
 
         # Start Docker
         service docker start
+        echo 'docker install done'
      }
 
 
     # Install docker compose version
     function installDockerCompose() {
+        echo 'docker-compose install start'
         curl -L https://github.com/docker/compose/releases/download/$dockerComposeVersion/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
         # Apply executable permissions to the binary
         chmod +x /usr/local/bin/docker-compose
+        ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+        echo 'docker-compose install done'
      }
 
 
     function verifyInstall() {
        # Test Docker Installation
-        docker run hello-world
+       echo 'docker verison: '
+       docker --version
+
        # Test docker compose installation
+       echo 'docker-compose version: ' 
        docker-compose --version
      }
     # Start running script
     unInstallDocker
     installDocker
     installDockerCompose
-    exit
     verifyInstall
 
 SudoUser

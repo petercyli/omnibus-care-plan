@@ -1,6 +1,4 @@
 #!/bin/bash -x
-dockerVersion=docker-engine-1.13.0-1.el7.centos
-dockerComposeVersion=1.10.1
 
 sudo su << SudoUser
        # Start Docker
