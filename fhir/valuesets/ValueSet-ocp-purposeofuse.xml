@@ -1,0 +1,137 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+ <id value="ocp-purposeofuse"/>
+<meta>
+<versionId value="1"/>
+<lastUpdated value="2018-03-07T07:44:43.294+10:00"/>
+</meta> 
+<text>
+   <status value="generated"/>
+   <div xmlns="http://www.w3.org/1999/xhtml">
+      <h2> Purpose of Use value set </h2>
+      <div>
+         <p>This value set supports communication of purpose of use at a general level</p>
+      </div>
+      <p> This purpose of use value set includes codes from the following code systems:</p>
+      <ul>
+         <li> This value set includes codes from the following code systems: 
+            http://hl7.org/fhir/v3/ActReason 
+         </li>
+      </ul>
+      <h3> This value set defines purpose of use and value sets may be updated later based on the requirements. </h3>
+      <p> Release Date: 2016-11-11</p>
+      <table class="grid">
+<tr> <td> <b><code>PurposeOfUse</code></b></td><td><b><display>purpose of use</display></b></td></tr>
+<tr> <td> <b><code>HMARKT</code></b></td><td><b><display>healthcare marketing</display></b></td></tr>
+<tr> <td> <b><code>HOPERAT</code></b></td><td><b><display>healthcare operations</display></b></td></tr>
+<tr> <td> <b><code>DONAT</code></b></td><td><b><display>donation</display></b></td></tr>
+<tr> <td> <b><code>FRAUD</code></b></td><td><b><display>fraud</display></b></td></tr>
+<tr> <td> <b><code>GOV</code></b></td><td><b><display>government</display></b></td></tr>
+<tr> <td> <b><code>HACCRED</code></b></td><td><b><display>health accreditation</display></b></td></tr>
+<tr> <td> <b><code>HCOMPL</code></b></td><td><b><display>health compliance</display></b></td></tr>
+<tr> <td> <b><code>HDECD</code></b></td><td><b><display>decedent</display></b></td></tr>
+<tr> <td> <b><code>HDIRECT</code></b></td><td><b><display>directory</display></b></td></tr>
+<tr> <td> <b><code>HLEGAL</code></b></td><td><b><display>legal</display></b></td></tr>
+<tr> <td> <b><code>HOUTCOMS</code></b></td><td><b><display>health outcome measure</display></b></td></tr>
+<tr> <td> <b><code>HPRGRP</code></b></td><td><b><display>health program reporting</display></b></td></tr>
+<tr> <td> <b><code>HQUALIMP</code></b></td><td><b><display>health quality improvement</display></b></td></tr>  
+<tr> <td> <b><code>HSYSADMIN</code></b></td><td><b><display>health system administration</display></b></td></tr> 
+<tr> <td> <b><code>MEMADMIN</code></b></td><td><b><display>member administration</display></b></td></tr>   
+<tr> <td> <b><code>PATADMIN</code></b></td><td><b><display>patient administration</display></b></td></tr>
+<tr> <td> <b><code>PATSFTY</code></b></td><td><b><display>patient safety</display></b></td></tr>
+<tr> <td> <b><code>PERFMSR</code></b></td><td><b><display>performance measure</display></b></td></tr>
+<tr> <td> <b><code>RECORDMGT</code></b></td><td><b><display>records management</display></b></td></tr>
+<tr> <td> <b><code>TRAIN</code></b></td><td><b><display>training</display></b></td></tr>
+<tr> <td> <b><code>HPAYMT</code></b></td><td><b><display>healthcare payment</display></b></td></tr>
+<tr> <td> <b><code>CLMATTCH</code></b></td><td><b><display>claim attachment</display></b></td></tr>
+<tr> <td> <b><code>COVAUTH</code></b></td><td><b><display>coverage authorization</display></b></td></tr>
+<tr> <td> <b><code>COVERAGE</code></b></td><td><b><display>coverage under policy or program</display></b></td></tr>
+<tr> <td> <b><code>ELIGDTRM</code></b></td><td><b><display>eligibility determination</display></b></td></tr>
+<tr> <td> <b><code>ELIGVER</code></b></td><td><b><display>eligibility verification</display></b></td></tr>
+<tr> <td> <b><code>ENROLLM</code></b></td><td><b><display>enrollment</display></b></td></tr>
+<tr> <td> <b><code>REMITADV</code></b></td><td><b><display>remittance advice</display></b></td></tr>
+<tr> <td> <b><code>HRESCH</code></b></td><td><b><display>healthcare research</display></b></td></tr>  
+<tr> <td> <b><code>CLINTRCH</code></b></td><td><b><display>clinical trial research</display></b></td></tr>     
+<tr> <td> <b><code>PATRQT</code></b></td><td><b><display>patient requested</display></b></td></tr> 
+<tr> <td> <b><code>FAMRQT</code></b></td><td><b><display>family requested</display></b></td></tr>
+<tr> <td> <b><code>PWATRNY</code></b></td><td><b><display>power of attorney</display></b></td></tr>
+<tr> <td> <b><code>SUPNWK</code></b></td><td><b><display>support network</display></b></td></tr>
+<tr> <td> <b><code>PUBHLTH</code></b></td><td><b><display>public health</display></b></td></tr>
+<tr> <td> <b><code>DISASTER</code></b></td><td><b><display>disaster</display></b></td></tr>  
+<tr> <td> <b><code>THREAT</code></b></td><td><b><display>threat</display></b></td></tr>     
+<tr> <td> <b><code>TREAT</code></b></td><td><b><display>treatment</display></b></td></tr>
+<tr> <td> <b><code>CAREMGT</code></b></td><td><b><display>Care Management</display></b></td></tr>
+<tr> <td> <b><code>CLINTRL</code></b></td><td><b><display>clinical trial</display></b></td></tr>  
+<tr> <td> <b><code>ETREAT</code></b></td><td><b><display>Emergency Treatment</display></b></td></tr>     
+<tr> <td> <b><code>POPHLTH</code></b></td><td><b><display>population health</display></b></td></tr>
+  </table>
+   </div>
+</text>
+  <url value="http://hl7.org/fhir/ValueSet/v3-PurposeOfUse"/>
+     <version value="1.1.0"/> 
+	 <name value="Purpose of code value set"/> 
+  <status value="draft"/> 
+  <experimental value="true"/> 
+  <date value="2017-04-19T07:44:43+10:00"/> 
+  <publisher value="HL7 US Realm Steering Committee"/>
+  <contact> 
+    <telecom> 
+      <system value="url"/> 
+      <value value="http://hl7.org/fhir"/> 
+    </telecom> 
+  </contact> 
+  <description value="This value set (http://hl7.org/fhir/ValueSet/v3-PurposeOfUse) is defined as part of HL7 v3. This value set includes codes from the following code systems: Include codes from http://hl7.org/fhir/v3/ActReason where concept is-a PurposeOfUse"/> 
+  <jurisdiction>
+      <coding>
+         <system value="http://hl7.org/fhir/ValueSet/v3-PurposeOfUse"/>
+         <code value="US"/>
+      </coding>
+   </jurisdiction>
+  <compose> 
+    <include> 
+      <system value="http://hl7.org/fhir/ValueSet/v3-PurposeOfUse"/> 
+<concept><code value='PurposeOfUse'/><display value='purpose of use'/> </concept>
+<concept><code value='HMARKT'/><display value='healthcare marketing'/> </concept>
+<concept><code value='HOPERAT'/><display value='healthcare operations'/> </concept>
+<concept><code value='DONAT'/><display value='donation'/> </concept>
+<concept><code value='FRAUD'/><display value='fraud'/> </concept>
+<concept><code value='GOV'/><display value='government'/> </concept>
+<concept><code value='HACCRED'/><display value='health accreditation'/> </concept>
+<concept><code value='HCOMPL'/><display value='health compliance'/> </concept>
+<concept><code value='HDECD'/><display value='decedent'/> </concept>
+<concept><code value='HDIRECT'/><display value='directory'/> </concept>
+<concept><code value='HLEGAL'/><display value='legal'/> </concept>
+<concept><code value='HOUTCOMS'/><display value='health outcome measure'/> </concept>
+<concept><code value='HPRGRP'/><display value='health program reporting'/> </concept>
+<concept><code value='HQUALIMP'/><display value='health quality improvement'/> </concept>
+<concept><code value='HSYSADMIN'/><display value='health system administration'/> </concept>
+<concept><code value='MEMADMIN'/><display value='member administration'/></concept>
+<concept><code value='PATADMIN'/><display value='patient administration'/></concept>
+<concept><code value='PATSFTY'/><display value='patient safety'/> </concept>
+<concept><code value='PERFMSR'/><display value='performance measure'/> </concept>
+<concept><code value='RECORDMGT'/><display value='records management'/> </concept>
+<concept><code value='TRAIN'/><display value='training'/> </concept>
+<concept><code value='HPAYMT'/><display value='healthcare payment'/> </concept>
+<concept><code value='CLMATTCH'/><display value='claim attachment'/> </concept>
+<concept><code value='COVAUTH'/><display value='coverage authorization'/></concept>
+<concept><code value='COVERAGE'/><display value='coverage under policy or program'/> </concept>
+<concept><code value='ELIGDTRM'/><display value='eligibility determination'/> </concept>
+<concept><code value='ELIGVER'/><display value='eligibility verification'/></concept>
+<concept><code value='ENROLLM'/><display value='enrollment'/> </concept>
+<concept><code value='REMITADV'/><display value='remittance advice'/> </concept>
+<concept><code value='HRESCH'/><display value='healthcare research'/> </concept>
+<concept><code value='CLINTRCH'/><display value='clinical trial research'/></concept>
+<concept><code value='PATRQT'/><display value='patient requested'/> </concept>
+<concept><code value='FAMRQT'/><display value='family requested'/> </concept>
+<concept><code value='PWATRNY'/><display value='power of attorney'/> </concept>
+<concept><code value='SUPNWK'/><display value='support network'/> </concept>
+<concept><code value='PUBHLTH'/><display value='public health'/> </concept>
+<concept><code value='DISASTER'/><display value='disaster'/> </concept>
+<concept><code value='THREAT'/><display value='threat'/> </concept>
+<concept><code value='TREAT'/><display value='treatment'/> </concept>
+<concept><code value='CAREMGT'/><display value='Care Management'/> </concept>
+<concept><code value='CLINTRL'/><display value='clinical trial'/> </concept>
+<concept><code value='ETREAT'/><display value='Emergency Treatment'/> </concept>
+<concept><code value='POPHLTH'/><display value='population health'/> </concept>
+ </include> 
+ </compose> 
+</ValueSet> 

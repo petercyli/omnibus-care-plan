@@ -1,0 +1,1723 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ocp-communication" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2018-05-04T19:07:49.87+00:00" />
+  </meta>
+  <language value="US-en" />
+  <text>
+    <status value="generated" /><div xmlns="http://www.w3.org/1999/xhtml">
+The FHIR STU3 (Release 3) Omnibus Care Plan (OCP) Communication profile uses FHIR resources and describes minimum expectations for the Communication with supported data elements and changes to the cardinality. It identifies which core elements, extensions, and value sets SHALL be present in the resource when using this profile. The Communication is about the transfer of information (which may or may not occur as part of an encounter). Phone calls not involving the patient (e.g. between practitioners or practitioner to relative) that are tracked for billing or other purposes can use Communication to represent the information transferred, but are not ideal to represent the call itself. 
+Dependencies:
+   Communication profile that conform to this specification must include reference to other resources 
+<ul><li>OCP-Patient</li><li>Group</li><li>Organization</li><li>ActivityDefinition</li><li>PlanDefinition</li><li>OCP-Practitioner</li><li>OCP-RelatedPerson</li><li>EpisodeOfCare</li><li>Encounter</li><li>Condition</li><li>Observation</li></ul></div></text>
+  <url value="http://hl7.org/fhir/StructureDefinition/ocp-communication" />
+  <version value="1.0" />
+  <name value="OCP Communication Profile" />
+  <title value="OCP Communication Profile" />
+  <status value="draft" />
+  <date value="2018-03-24T00:44:38.512-04:00" />
+  <publisher value="SAMHSA" />
+  <contact>
+    <name value="Neelima Chennamaraja" />
+    <telecom>
+      <system value="url" />
+      <value value="www.eversolve.com" />
+      <period>
+        <start value="1999-06-15" />
+      </period>
+    </telecom>
+    <telecom>
+      <system value="email" />
+      <value value="neelima@eversolve.com" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="This OCP (Omnibus Care Plan) Communication profile describes an occurrence of information being transmitted. A communication is a conveyance of information from one entity, a sender, to another entity, a receiver and the information is delivered only once. The sender and receivers may be patients, practitioners, related persons, organizations, or devices. It identifies which core elements, extensions, and value sets SHALL be present in the resource when using this profile.&#xD;&#xA;Communication does not deal with the duration of a call, it represents the fact that information was transferred at a particular point in time." />
+  <jurisdiction>
+    <coding>
+      <code value="US" />
+      <display value="US-Realm" />
+    </coding>
+    <text value="US-Realm OCP EpisodeOfCare Profile published by SAMHSA" />
+  </jurisdiction>
+  <purpose value="This profile for Communication includes all the elements related to basic need for OCP (which could change over time). This profile is intended to be implemented by OCP (Omnibus Care Plan) systems. " />
+  <copyright value="+Copyright (c) 2017 SAMHSA. All Rights Reserved." />
+  <fhirVersion value="3.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="Communication" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/Communication" />
+  <derivation value="constraint" />
+  <snapshot>
+    <element id="Communication">
+      <path value="Communication" />
+      <short value="A record of information transmitted from a sender to a receiver" />
+      <definition value="An occurrence of information being transmitted; e.g. an alert that was sent to a responsible provider, a public health agency was notified about a reportable condition." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Resource" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <constraint>
+        <key value="dom-2" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
+        <expression value="contained.contained.empty()" />
+        <xpath value="not(parent::f:contained and f:contained)" />
+      </constraint>
+      <constraint>
+        <key value="dom-1" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
+        <expression value="contained.text.empty()" />
+        <xpath value="not(parent::f:contained and f:text)" />
+      </constraint>
+      <constraint>
+        <key value="dom-4" />
+        <severity value="error" />
+        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
+        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
+        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
+      </constraint>
+      <constraint>
+        <key value="dom-3" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
+        <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
+        <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
+      </constraint>
+      <constraint>
+        <key value="com-1" />
+        <severity value="error" />
+        <human value="Not Done Reason can only be specified if NotDone is &quot;true&quot;" />
+        <expression value="notDone or notDoneReason.exists().not()" />
+        <xpath value="f:notDone/@value=true() or not(exists(f:notDoneReason))" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="workflow.encounter" />
+      </mapping>
+    </element>
+    <element id="Communication.id">
+      <path value="Communication.id" />
+      <short value="Logical id of this artifact" />
+      <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes." />
+      <comment value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="id" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Communication.meta">
+      <path value="Communication.meta" />
+      <short value="Metadata about the resource" />
+      <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.meta" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Meta" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Communication.implicitRules">
+      <path value="Communication.implicitRules" />
+      <short value="A set of rules under which this content was created" />
+      <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content." />
+      <comment value="Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element. &#xA;&#xA;This element is labelled as a modifier because the implicit rules may provide additional knowledge about the resource that modifies it's meaning or interpretation." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.implicitRules" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Communication.language">
+      <path value="Communication.language" />
+      <short value="Language of the resource content" />
+      <definition value="The base language in which the resource is written." />
+      <comment value="Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute)." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.language" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet">
+          <valueReference>
+            <reference value="http://hl7.org/fhir/ValueSet/all-languages" />
+          </valueReference>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="Language" />
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true" />
+        </extension>
+        <strength value="extensible" />
+        <description value="A human language." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/languages" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Communication.text">
+      <path value="Communication.text" />
+      <short value="Text summary of the resource, for human interpretation" />
+      <definition value="A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety." />
+      <comment value="Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative. In some cases, a resource may only have text with little or no additional discrete data (as long as all minOccurs=1 elements are satisfied).  This may be necessary for data from legacy systems where information is captured as a &quot;text blob&quot; or where text is additionally entered raw or narrated and encoded in formation is added later." />
+      <alias value="narrative" />
+      <alias value="html" />
+      <alias value="xhtml" />
+      <alias value="display" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="DomainResource.text" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Narrative" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="dom-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="Act.text?" />
+      </mapping>
+    </element>
+    <element id="Communication.contained">
+      <path value="Communication.contained" />
+      <short value="Contained, inline Resources" />
+      <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope." />
+      <comment value="This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again." />
+      <alias value="inline resources" />
+      <alias value="anonymous resources" />
+      <alias value="contained resources" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.contained" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Resource" />
+      </type>
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Communication.extension">
+      <path value="Communication.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Communication.modifierExtension">
+      <path value="Communication.modifierExtension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Communication.identifier">
+      <path value="Communication.identifier" />
+      <short value="Unique identifier" />
+      <definition value="Identifiers associated with this Communication that are defined by business processes and/ or used to refer to it when a direct URL reference to the resource itself is not appropriate (e.g. in CDA documents, or in written / printed documentation)." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Communication.identifier" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Identifier" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CX / EI (occasionally, more often EI maps to a resource id or a URL)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="II - see see identifier pattern at http://wiki.hl7.org/index.php?title=Common_Design_Patterns#Identifier_Pattern for relevant discussion. The Identifier class is a little looser than the v3 type II because it allows URIs as well as registered OIDs or GUIDs.  Also maps to Role[classCode=IDENT]" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="Identifier" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.identifier" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="id" />
+      </mapping>
+    </element>
+    <element id="Communication.definition">
+      <path value="Communication.definition" />
+      <short value="Instantiates protocol or definition" />
+      <definition value="A protocol, guideline, or other definition that was adhered to in whole or in part by this communication event. To be supported later once organization relationship is established. There could be one or more ActivityDefinition templates defined for Communication (e.g. Outreach). " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Communication.definition" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/PlanDefinition" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ActivityDefinition" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.definition" />
+      </mapping>
+    </element>
+    <element id="Communication.basedOn">
+      <path value="Communication.basedOn" />
+      <short value="Request fulfilled by this communication" />
+      <definition value="An order, proposal or plan fulfilled in whole or in part by this Communication." />
+      <comment value="This must point to some sort of a 'Request' resource, such as CarePlan, CommunicationRequest, ReferralRequest, MedicationRequest, etc." />
+      <alias value="fulfills" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Communication.basedOn" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.basedOn" />
+      </mapping>
+    </element>
+    <element id="Communication.partOf">
+      <path value="Communication.partOf" />
+      <short value="Part of this action" />
+      <definition value="Part of this action." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <alias value="container" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Communication.partOf" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.partOf" />
+      </mapping>
+    </element>
+    <element id="Communication.status">
+      <path value="Communication.status" />
+      <short value="preparation | in-progress | suspended | aborted | completed | entered-in-error" />
+      <definition value="The status of the transmission. Show all status for user to choose from. May require state machine flow for this." />
+      <comment value="This element is labeled as a modifier because the status contains the codes aborted and entered-in-error that mark the communication as not currently valid." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.status" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CommunicationStatus" />
+        </extension>
+        <strength value="required" />
+        <description value="The status of the communication." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/event-status" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.status" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="status" />
+      </mapping>
+    </element>
+    <element id="Communication.notDone">
+      <path value="Communication.notDone" />
+      <short value="Communication did not occur" />
+      <definition value="If true, indicates that the described communication event did not actually occur. Allow user to check if the communication did not occur and this is added just for record person (e.g. tried calling Patient but was not able to talk). Default value is FALSE." />
+      <comment value="This element is labeled as a modifier because it marks the communication as a communication that did not occur.  The more attributes are populated, the more constrained the negated statement is." />
+      <requirements value="Creating a Communication where notDone is true is intended for situations where there's a need for a specific statement in the record about something not being done.  If the need is merely to indicate that a request wasn't fulfilled, that should be handled using Task." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.notDone" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="boolean" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/boolean" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.notDone" />
+      </mapping>
+    </element>
+    <element id="Communication.notDoneReason">
+      <path value="Communication.notDoneReason" />
+      <short value="Why communication did not occur" />
+      <definition value="Describes why the communication event did not occur in coded and/or textual form. Allow user to choose from value set. Only required if notDone = true. " />
+      <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Communication.notDoneReason" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="com-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CommunicationNotDoneReason" />
+        </extension>
+        <strength value="example" />
+        <description value="Codes for the reason why a communication was not done." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/communication-not-done-reason" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.notDoneReason" />
+      </mapping>
+    </element>
+    <element id="Communication.category">
+      <path value="Communication.category" />
+      <short value="Message category" />
+      <definition value="The type of message conveyed such as alert, notification, reminder, instruction, etc." />
+      <comment value="There may be multiple axes of categorization and one communication may serve multiple purposes. Allow user to choose from value set. Use FHIR example value set for now. " />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.category" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/CodeableConcept" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CommunicationCategory" />
+        </extension>
+        <strength value="example" />
+        <description value="Codes for general categories of communications such as alerts, instruction, etc." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/communication-category" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.code" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="class" />
+      </mapping>
+    </element>
+    <element id="Communication.medium">
+      <path value="Communication.medium" />
+      <short value="A channel of communication" />
+      <definition value="A channel that was used for this communication (e.g. email, fax). Allow user to choose from value set. Use FHIR example value set for now. " />
+      <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.medium" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/CodeableConcept" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CommunicationMedium" />
+        </extension>
+        <strength value="example" />
+        <description value="Codes for communication mediums such as phone, fax, email, in person, etc." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/v3-ParticipationMode" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
+      </mapping>
+    </element>
+    <element id="Communication.subject">
+      <path value="Communication.subject" />
+      <short value="Focus of message" />
+      <definition value="The patient or group that was the focus of this communication. System populated with the current patient context when communication  is created specific to Patient. " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <alias value="patient" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Communication.subject" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.subject" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="who.focus" />
+      </mapping>
+    </element>
+    <element id="Communication.recipient">
+      <path value="Communication.recipient" />
+      <short value="Message recipient" />
+      <definition value="The entity (e.g. person, organization, clinical information system, or device) which was the target of the communication. If receipts need to be tracked by individual, a separate resource instance will need to be created for each recipient.  Multiple recipient communications are intended where either a receipt(s) is not tracked (e.g. a mass mail-out) or is captured in aggregate (all emails confirmed received by a particular time). Patient or Practitioner from Care Team or RelatedPerson associated with the Patient (may or may not be in the Care Team)." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="1" />
+      <max value="*" />
+      <base>
+        <path value="Communication.recipient" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-practitioner" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-relatedperson" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="who.focus" />
+      </mapping>
+    </element>
+    <element id="Communication.topic">
+      <path value="Communication.topic" />
+      <short value="Focal resources" />
+      <definition value="The resources which were responsible for or related to producing this communication. System to populate with Task or Appointment or CarePlan etc. depending on where creation of Communication is invoked from. Optional link to other resource such as Task/Activity, Assessment, Care Plan, Appointment etc. " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Communication.topic" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="context" />
+      </mapping>
+    </element>
+    <element id="Communication.context">
+      <path value="Communication.context" />
+      <short value="Encounter or episode leading to message" />
+      <definition value="The encounter within which the communication was sent. Select from list of Episode of Care (same way as on Task) for current patient context and current organization cotext. Generally there should be only one active Episode of Care for given patient and organization. Keeping it optional to allow communication that is not related to specific episode of care.  " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <alias value="encounter" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Communication.context" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-episodeofcare" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.context" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="context" />
+      </mapping>
+    </element>
+    <element id="Communication.sent">
+      <path value="Communication.sent" />
+      <short value="When sent" />
+      <definition value="The time when this communication was sent. When communication was made or message was sent. Populated by the system with current date/time by default but allow user to choose different datetime in the past if user is entering afterwards." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.sent" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.occurrenceDateTime (Invariant: maps to either sent OR received)" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="when.init" />
+      </mapping>
+    </element>
+    <element id="Communication.received">
+      <path value="Communication.received" />
+      <short value="When received" />
+      <definition value="The time when this communication arrived at the destination. Adding to profile and may be used later for receipient to acknoledge receipt when applicable. " />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Communication.received" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.occurrenceDateTime (Invariant: maps to either sent OR received)" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="when.done" />
+      </mapping>
+    </element>
+    <element id="Communication.sender">
+      <path value="Communication.sender" />
+      <short value="Message sender" />
+      <definition value="The entity (e.g. person, organization, clinical information system, or device) which was the source of the communication. Read-only. System populated with the current user context (usually Practitioner but could be Patient or RelatedPerson). May not need to support Organization or Device." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.sender" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-practitioner" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-relatedperson" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.performer.actor" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="who.actor" />
+      </mapping>
+    </element>
+    <element id="Communication.reasonCode">
+      <path value="Communication.reasonCode" />
+      <short value="Indication for message" />
+      <definition value="The reason or justification for the communication." />
+      <comment value="Textual reasons can be caprued using reasonCode.text." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Communication.reasonCode" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="CommunicationReason" />
+        </extension>
+        <strength value="example" />
+        <description value="Codes for describing reasons for the occurrence of a communication." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/clinical-findings" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.reasonCodableConcept" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".reasonCode" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="why" />
+      </mapping>
+    </element>
+    <element id="Communication.reasonReference">
+      <path value="Communication.reasonReference" />
+      <short value="Why was communication done?" />
+      <definition value="Indicates another resource whose existence justifies this communication." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Communication.reasonReference" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Condition" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Observation" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.reasonReference" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value=".outboundRelationship[typeCode=RSON].target" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="why" />
+      </mapping>
+    </element>
+    <element id="Communication.payload">
+      <path value="Communication.payload" />
+      <short value="Message payload" />
+      <definition value="Text, attachment(s), or resource(s) that was communicated to the recipient. Allow user to enter optional message text if applicable (e.g. not needed for phone conversation)." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.payload" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Communication.payload.id">
+      <path value="Communication.payload.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Communication.payload.extension">
+      <path value="Communication.payload.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Communication.payload.modifierExtension">
+      <path value="Communication.payload.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="Communication.payload.content[x]">
+      <path value="Communication.payload.content[x]" />
+      <short value="Message part content" />
+      <definition value="A communicated content (or for multi-part communications, one portion of the communication). Only use string for now. May be used at later time to include attachments." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="Communication.payload.content[x]" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <type>
+        <code value="Attachment" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Resource" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="Communication.note">
+      <path value="Communication.note" />
+      <short value="Comments made about the communication" />
+      <definition value="Additional notes or commentary about the communication by the sender, receiver or other interested parties. Optional  comments not part of the message. " />
+      <comment value="For systems that do not have structured annotations, they can simply communicate a single annotation with no author or time.  This element may need to be included in narrative because of the potential for modifying information.  *Annotations SHOULD NOT* be used to communicate &quot;modifying&quot; information that could be computable. (This is a SHOULD because enforcing user behavior is nearly impossible)." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Communication.note" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Annotation" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="N/A" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="Act" />
+      </mapping>
+      <mapping>
+        <identity value="workflow" />
+        <map value="Event.note" />
+      </mapping>
+    </element>
+  </snapshot>
+  <differential>
+    <element id="Communication.definition">
+      <path value="Communication.definition" />
+      <definition value="A protocol, guideline, or other definition that was adhered to in whole or in part by this communication event. To be supported later once organization relationship is established. There could be one or more ActivityDefinition templates defined for Communication (e.g. Outreach). " />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.status">
+      <path value="Communication.status" />
+      <definition value="The status of the transmission. Show all status for user to choose from. May require state machine flow for this." />
+      <type>
+        <code value="code" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/code" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.notDone">
+      <path value="Communication.notDone" />
+      <definition value="If true, indicates that the described communication event did not actually occur. Allow user to check if the communication did not occur and this is added just for record person (e.g. tried calling Patient but was not able to talk). Default value is FALSE." />
+      <min value="1" />
+      <type>
+        <code value="boolean" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/boolean" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.notDoneReason">
+      <path value="Communication.notDoneReason" />
+      <definition value="Describes why the communication event did not occur in coded and/or textual form. Allow user to choose from value set. Only required if notDone = true. " />
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.category">
+      <path value="Communication.category" />
+      <comment value="There may be multiple axes of categorization and one communication may serve multiple purposes. Allow user to choose from value set. Use FHIR example value set for now. " />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/CodeableConcept" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.medium">
+      <path value="Communication.medium" />
+      <definition value="A channel that was used for this communication (e.g. email, fax). Allow user to choose from value set. Use FHIR example value set for now. " />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/CodeableConcept" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.subject">
+      <path value="Communication.subject" />
+      <definition value="The patient or group that was the focus of this communication. System populated with the current patient context when communication  is created specific to Patient. " />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.recipient">
+      <path value="Communication.recipient" />
+      <definition value="The entity (e.g. person, organization, clinical information system, or device) which was the target of the communication. If receipts need to be tracked by individual, a separate resource instance will need to be created for each recipient.  Multiple recipient communications are intended where either a receipt(s) is not tracked (e.g. a mass mail-out) or is captured in aggregate (all emails confirmed received by a particular time). Patient or Practitioner from Care Team or RelatedPerson associated with the Patient (may or may not be in the Care Team)." />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Group" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-practitioner" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-relatedperson" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.topic">
+      <path value="Communication.topic" />
+      <definition value="The resources which were responsible for or related to producing this communication. System to populate with Task or Appointment or CarePlan etc. depending on where creation of Communication is invoked from. Optional link to other resource such as Task/Activity, Assessment, Care Plan, Appointment etc. " />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.context">
+      <path value="Communication.context" />
+      <definition value="The encounter within which the communication was sent. Select from list of Episode of Care (same way as on Task) for current patient context and current organization cotext. Generally there should be only one active Episode of Care for given patient and organization. Keeping it optional to allow communication that is not related to specific episode of care.  " />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Encounter" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-episodeofcare" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.sent">
+      <path value="Communication.sent" />
+      <definition value="The time when this communication was sent. When communication was made or message was sent. Populated by the system with current date/time by default but allow user to choose different datetime in the past if user is entering afterwards." />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.received">
+      <path value="Communication.received" />
+      <definition value="The time when this communication arrived at the destination. Adding to profile and may be used later for receipient to acknoledge receipt when applicable. " />
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.sender">
+      <path value="Communication.sender" />
+      <definition value="The entity (e.g. person, organization, clinical information system, or device) which was the source of the communication. Read-only. System populated with the current user context (usually Practitioner but could be Patient or RelatedPerson). May not need to support Organization or Device." />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-practitioner" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-relatedperson" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.payload">
+      <path value="Communication.payload" />
+      <definition value="Text, attachment(s), or resource(s) that was communicated to the recipient. Allow user to enter optional message text if applicable (e.g. not needed for phone conversation)." />
+      <min value="1" />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.payload.content[x]">
+      <path value="Communication.payload.content[x]" />
+      <definition value="A communicated content (or for multi-part communications, one portion of the communication). Only use string for now. May be used at later time to include attachments." />
+      <mustSupport value="true" />
+    </element>
+    <element id="Communication.note">
+      <path value="Communication.note" />
+      <definition value="Additional notes or commentary about the communication by the sender, receiver or other interested parties. Optional  comments not part of the message. " />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+  </differential>
+</StructureDefinition>

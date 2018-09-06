@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ImplementationGuide xmlns="http://hl7.org/fhir">
+  <implicitRules value="http://hl7.org/ImplementationGuide/ocp-ig" />
+  <text>
+    <status value="empty" /><div xmlns="http://www.w3.org/1999/xhtml" /></text>
+  <url value="http://hl7.org/ImplementationGuide/ocp-ig" />
+  <version value="1.0" />
+  <name value="Omnibus Care Plan" />
+  <status value="draft" />
+  <date value="2018-08-29T01:22:18.2303804-04:00" />
+  <contact>
+    <name value="Ioana Singureanu" />
+  </contact>
+  <copyright value="SAMHSA 2018" />
+  <fhirVersion value="3.0.1" />
+  <package>
+    <name value="OCP Profiles" />
+    <resource>
+      <example value="false" />
+      <name value="OCP Appointment Profile" />
+      <description value="The Omnibus Care Plan (OCP) Appointment profile is used to provide information about a planned meeting that may be in the future or past. The resource only describes a single meeting, a series of repeating visits would require multiple appointment resources to be created for each instance. The visit scheduled by an appointment may be in person or remote (by phone, video conference, etc.) All that matters is that the time and usage of one or more individuals, locations and/or pieces of equipment is being fully or partially reserved for a designated period of time." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-appointment" />
+      </sourceReference>
+    </resource>
+    <resource>
+      <example value="false" />
+      <name value="OCP Communication Profile" />
+      <description value="This OCP (Omnibus Care Plan) Communication profile describes an occurrence of information being transmitted. A communication is a conveyance of information from one entity, a sender, to another entity, a receiver and the information is delivered only once. The sender and receivers may be patients, practitioners, related persons, organizations, or devices. It identifies which core elements, extensions, and value sets SHALL be present in the resource when using this profile.&#xD;&#xA;Communication does not deal with the duration of a call, it represents the fact that information was transferred at a particular point in time." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-communication" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP Coverage Profile" />
+      <description value="This profile describes minimum expectations for the Coverage resource to record, search and fetch basic reimbursements or payment for health care products and services about an individual Omnibus Care Plan (OCP) patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.&#xD;&#xA;Base StructureDefinition for Coverage Resource.&#xD;&#xA;" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-coverage" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP EpisodeOfCare Profile" />
+      <description value="The EpisodeOfCare Profile contains information about an association of a Omnibus Care Plan (OCP) Patient with a Healthcare Provider for a period of time under which related healthcare activities may occur. In many cases, this represents a period of time where the Healthcare Provider has some level of responsibility for the care of the patient regarding a specific condition or problem, even if not currently participating in an encounter.&#xD;&#xA;The EpisodeOfCare profile is primarily used as a tracking resource, and contains details about the purpose of the care and can exist without any activities. The minimal information that would be required in an episode of care would be a OCP patient, organization and a reason for the ongoing association. Other reasons for creating an EpisodeOfCare could be for tracking the details required for government reporting or billing.&#xD;&#xA;The primary difference between the EpisodeOfCare and the Encounter is that the Encounter records the details of an activity directly relating to the patient, while the EpisodeOfCare is the container that can link a series of Encounters together for problems/issues.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-episodeofcare" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP Flag Profile" />
+      <description value="The Omnibus Care Plan (OCP) Flag profile is used to alert practitioners to information that is important to influence their interaction with a Omnibus Care Plan (OCP) Patient prior to detailed review of the record. Flags are not used to convey information to a specific individual or organization. Flags are not raised as a result of a reported or proposed action." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-flag" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP HealthcareService Profile" />
+      <description value="The Omnibus Care Plan (OCP) HealthcareService profile is used to describe a single healthcare service or category of services that are provided by an organization at a location. The location of the services could be virtual, as with TeleMedicine Services. OCP HealthcareService resources do not represent Computer related Services (not SOA). The OCP HealthcareService resource can be used with the Schedule resource to define actual availability of the service.   When creating an Appointment, the OCP HealthcareService is to be assigned to one of the participants. It is up to the scheduling system to determine if the service is available, and can be accepted. " />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-healthcareservice" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP Patient" />
+      <description value="This profile describes minimum expectations for the Patient resource to record, search and fetch basic demographics and other administrative information about an individual Omnibus Care Plan (OCP) patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.&#xD;&#xA;&#xD;&#xA;Demographics and other administrative information about an individual or other health-related services.&#xD;&#xA;" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP Practitioner Profile" />
+      <description value="This profile describes about the Omnibus Care Plan (OCP) Practitioner who is directly or indirectly involved in the provisioning of healthcare.&#xD;&#xA;The profile sets minimum expectations for OCP Practitioner resource to record [content] associated with a patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.&#xD;&#xA;This specification describes how OCP Practitioner populates a FHIR Practitioner resource.  This OCP Practitioner profile does not use any contained resources. Contained resources allow the inadvertent sharing of Protected Information to unauthorized users and application. Therefore, any references to patients, providers, organizations are described as external references to resources stored on the same server.&#xD;&#xA;Practitioners include (but are not limited to):  physicians, dentists, pharmacists, physician assistants, nurses, scribes, midwives, dietitians, therapists, optometrists, paramedics, medical technicians, laboratory scientists, prosthetic technicians, radiographers, social workers, professional home carers, official volunteers, receptionists handling patient registration, IT personnel merging or unmerging patient records. &#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-practitioner" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP RelatedPerson Profile" />
+      <description value="This profile is primarily used for attribution of information, since RelatedPersons are often a source of information about the Omnibus Care Plan (OCP) patient. For keeping information about people for contact purposes for a patient, use a Patient's Contact element. Some individuals may serve as both a Patient's Contact and a Related Person. Information about a person that is involved in the care for a patient, but who is not the target of healthcare, nor has a formal responsibility in the care process. &#xD;&#xA;RelatedPersons typically have a personal or non-healthcare-specific professional relationship to the patient. &#xD;&#xA;&#xD;&#xA;" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-relatedperson" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP PractitionerRole Profile" />
+      <description value="This Omnibus Care Plan (OCP) PractitionerRole profile describes a specific set of roles/locations/specialties/services that a practitioner may perform at an organization for a period of time.&#xD;&#xA;The profile identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.&#xD;&#xA;&#xD;&#xA;PractitionerRole covers the recording of the location and types of services that Practitioners are able to provide for an organization.&#xD;&#xA;&#xD;&#xA;The role, specialty, location and telecom properties can be repeated if required in other instances of the PractitionerRole. Some systems record a collection of service values for a single location, others record the single service and the list of locations it is available. Both are acceptable options for representing this data.&#xD;&#xA;&#xD;&#xA;Qualifications (from the Practitioner resource) do not imply a Role, but might be considered when an Organization allocates practitioners to roles within their organization, and could provide useful information (such as expiry information) which could need to be tracked in some situations to ensure they continue to be eligible for a specific role." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-practitionerrole" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="OCP Task Profile" />
+      <description value="This profile tracks the state of a task, enabling systems to ensure that tasks are completed. This information is kept separate from the operational details necessary to complete the task, as those details vary across and even within workflows. That detail is expected to be carried as the subject of the task. Tasks may have named inputs and outputs. Inputs represent information that may or must be present in order for a task to complete. Outputs represent intermediate or final results produced by a task. " />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/ocp-task" />
+      </sourceReference>
+    </resource>
+  </package>
+  <package>
+    <name value="C2S Profiles" />
+    <resource>
+      <example value="false" />
+      <name value="C2S Consent Profile" />
+      <description value="The FHIR STU3 (Release 3) Consent profile describes how Consent2Share    (C2S) application and associated access control solution uses FHIR    resources to represent and persist patient consent for treatment,    research, or disclosure (e.g. 42 CFR Part 2, Title 38).    &#xD;&#xA;This specification describes how C2S populates a FHIR Consent resource.    This Consent profile does not use any contained resources. Contained    resources allow the inadvertent sharing of Protected Information to    unauthorized users and application. Therefore, any references to    patients, providers, organizations are described as external    references to resources stored on the same server.   &#xD;&#xA; Dependencies: Consents that conform to this specification must include reference    other resources:         &#xD;&#xA;- Patient (as patient and/or consenting party), RelatedPerson (as      consenting party)     &#xD;&#xA;- Practitioner (custodians, information recipients), and      - Organization (custodian, custodians, information recipients         " />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/StructureDefinition/c2s-consent" />
+      </sourceReference>
+    </resource>
+  </package>
+  <package>
+    <name value="US Core References" />
+    <resource>
+      <name value="US Core Birth Sex Extension" />
+      <description value="A code classifying the person's sex assigned at birth  as specified by the [Office of the National Coordinator for Health IT (ONC)](https://www.healthit.gov/newsroom/about-onc). This extension aligns with the C-CDA Birth Sex Observation (LOINC 76689-9)." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-birthsex" />
+      </sourceReference>
+    </resource>
+    <resource>
+      <name value="US  Core CareTeam Profile" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-careteam" />
+      </sourceReference>
+    </resource>
+    <resource>
+      <name value="US Core ethnicity Extension" />
+      <description value="Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The ethnicity codes used to represent these concepts are based upon the [CDC ethnicity and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 43 reference ethnicity.  The ethnicity concepts are grouped by and pre-mapped to the 2 OMB ethnicity categories: - Hispanic or Latino - Not Hispanic or Latino." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-ethnicity" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="US  Core Location Profile" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-location" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="US Core Organization Profile" />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-organization" />
+      </sourceReference>
+    </resource>
+    <resource>
+	<example value="false" />
+      <name value="US Core Patient Profile" />
+      <description value="Defines constraints and extensions on the patient resource for the minimal set of data to query and retrieve patient demographic information." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-patient" />
+      </sourceReference>
+    </resource>
+    <resource>
+      <name value="US Core Race Extension" />
+      <description value="Concepts classifying the person into a named category of humans sharing common history, traits, geographical origin or nationality.  The race codes used to represent these concepts are based upon the [CDC Race and Ethnicity Code Set Version 1.0](http://www.cdc.gov/phin/resources/vocabulary/index.html) which includes over 900 concepts for representing race and ethnicity of which 921 reference race.  The race concepts are grouped by and pre-mapped to the 5 OMB race categories: - American Indian or Alaska Native - Asian - Black or African American - Native Hawaiian or Other Pacific Islander - White." />
+      <sourceReference>
+        <reference value="http://hl7.org/fhir/us/core/StructureDefinition/us-core-race" />
+      </sourceReference>
+    </resource>
+    <resource>
+      <name value="ValueSet : administrative-gender" />
+      <sourceUri value="ValueSet-administrative-gender.xml" />
+    </resource>
+    <resource>
+      <name value="ValueSet : omb-ethnicity-category" />
+      <sourceUri value="ValueSet-omb-ethnicity-category.xml" />
+    </resource>
+    <resource>
+      <name value="ValueSet : omb-race-category" />
+      <sourceUri value="ValueSet-omb-race-category.xml" />
+    </resource>
+    <resource>
+      <name value="ValueSet : us-core-birthsex" />
+      <sourceUri value="ValueSet-us-core-birthsex.xml" />
+    </resource>
+  </package>
+</ImplementationGuide>

@@ -1,0 +1,2427 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+   <id value="simple-language"/>
+   <meta>
+      <versionId value="3"/>
+      <lastUpdated value="2018-01-30T23:02:38.897+00:00"/>
+   </meta>
+   <text>
+      <status value="generated"/>
+      <div xmlns="http://www.w3.org/1999/xhtml"> 
+         <h2>Language codes with language and optionally a region modifier </h2> 
+         <div> 
+            <p> This value set includes codes from 
+               <a href="http://tools.ietf.org/html/bcp47">BCP-47</a> . This value set matches the ONC 2015 Edition LanguageCommunication
+					data element value set within C-CDA to use a 2 character language
+					code if one exists, and a 3 character code if a 2 character code
+					does not exist. It points back to 
+               <a href="https://tools.ietf.org/html/rfc5646">RFC 5646</a> , however only the language codes are required, all other elements
+					are optional. 
+            </p> 
+         </div> 
+         <p>This value set includes codes from the following code systems:</p> 
+         <ul> 
+            <li> Include codes from 
+               <code>urn:ietf:bcp:47</code> where ext-lang exists false and 
+               <code>urn:ietf:bcp:47</code> where script exists false and 
+               <code>urn:ietf:bcp:47</code> where variant exists false and 
+               <code>urn:ietf:bcp:47</code> where extension exists false and 
+               <code>urn:ietf:bcp:47</code> where private-use exists false 
+            </li> 
+         </ul> 
+         <table class="none"> 
+            <tr> 
+               <td> 
+                  <b> Code</b> 
+               </td> 
+               <td> 
+                  <b> Display</b> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>aa</b> 
+               </td> 
+               <td> 
+                  <i>Afar</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ab</b> 
+               </td> 
+               <td> 
+                  <i>Abkhazian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ae</b> 
+               </td> 
+               <td> 
+                  <i>Avestan</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>af</b> 
+               </td> 
+               <td> 
+                  <i>Afrikaans</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ak</b> 
+               </td> 
+               <td> 
+                  <i>Akan</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>am</b> 
+               </td> 
+               <td> 
+                  <i>Amharic</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>an</b> 
+               </td> 
+               <td> 
+                  <i>Aragonese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ar</b> 
+               </td> 
+               <td> 
+                  <i>Arabic</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>as</b> 
+               </td> 
+               <td> 
+                  <i>Assamese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>av</b> 
+               </td> 
+               <td> 
+                  <i>Avaric</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ay</b> 
+               </td> 
+               <td> 
+                  <i>Aymara</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>az</b> 
+               </td> 
+               <td> 
+                  <i>Azerbaijani</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ba</b> 
+               </td> 
+               <td> 
+                  <i>Bashkir</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>be</b> 
+               </td> 
+               <td> 
+                  <i>Belarusian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bg</b> 
+               </td> 
+               <td> 
+                  <i>Bulgarian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bh</b> 
+               </td> 
+               <td> 
+                  <i>Bihari languages</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bi</b> 
+               </td> 
+               <td> 
+                  <i>Bislama</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bm</b> 
+               </td> 
+               <td> 
+                  <i>Bambara</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bn</b> 
+               </td> 
+               <td> 
+                  <i>Bengali</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bo</b> 
+               </td> 
+               <td> 
+                  <i>Tibetan</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bo</b> 
+               </td> 
+               <td> 
+                  <i>Tibetan</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>br</b> 
+               </td> 
+               <td> 
+                  <i>Breton</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>bs</b> 
+               </td> 
+               <td> 
+                  <i>Bosnian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ca</b> 
+               </td> 
+               <td> 
+                  <i>Catalan; Valencian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ce</b> 
+               </td> 
+               <td> 
+                  <i>Chechen</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ch</b> 
+               </td> 
+               <td> 
+                  <i>Chamorro</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>co</b> 
+               </td> 
+               <td> 
+                  <i>Corsican</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>cr</b> 
+               </td> 
+               <td> 
+                  <i>Cree</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>cs</b> 
+               </td> 
+               <td> 
+                  <i>Czech</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>cs</b> 
+               </td> 
+               <td> 
+                  <i>Czech</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>cu</b> 
+               </td> 
+               <td> 
+                  <i>Church Slavic</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>cv</b> 
+               </td> 
+               <td> 
+                  <i>Chuvash</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>cy</b> 
+               </td> 
+               <td> 
+                  <i>Welsh</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>cy</b> 
+               </td> 
+               <td> 
+                  <i>Welsh</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>da</b> 
+               </td> 
+               <td> 
+                  <i>Danish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>de</b> 
+               </td> 
+               <td> 
+                  <i>German</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>dv</b> 
+               </td> 
+               <td> 
+                  <i>Divehi; Dhivehi; Maldivian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>dz</b> 
+               </td> 
+               <td> 
+                  <i>Dzongkha</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ee</b> 
+               </td> 
+               <td> 
+                  <i>Ewe</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>el</b> 
+               </td> 
+               <td> 
+                  <i>Greek, Modern (1453-)</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>el</b> 
+               </td> 
+               <td> 
+                  <i>Greek, Modern (1453-)</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>en</b> 
+               </td> 
+               <td> 
+                  <i>English</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>eo</b> 
+               </td> 
+               <td> 
+                  <i>Esperanto</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>es</b> 
+               </td> 
+               <td> 
+                  <i>Spanish; Castilian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>et</b> 
+               </td> 
+               <td> 
+                  <i>Estonian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>eu</b> 
+               </td> 
+               <td> 
+                  <i>Basque</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>fa</b> 
+               </td> 
+               <td> 
+                  <i>Persian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>fa</b> 
+               </td> 
+               <td> 
+                  <i>Persian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ff</b> 
+               </td> 
+               <td> 
+                  <i>Fulah</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>fi</b> 
+               </td> 
+               <td> 
+                  <i>Finnish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>fj</b> 
+               </td> 
+               <td> 
+                  <i>Fijian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>fo</b> 
+               </td> 
+               <td> 
+                  <i>Faroese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>fr</b> 
+               </td> 
+               <td> 
+                  <i>French</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>fy</b> 
+               </td> 
+               <td> 
+                  <i>Western Frisian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ga</b> 
+               </td> 
+               <td> 
+                  <i>Irish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>gd</b> 
+               </td> 
+               <td> 
+                  <i>Gaelic; Scottish Gaelic</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>gl</b> 
+               </td> 
+               <td> 
+                  <i>Galician</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>gn</b> 
+               </td> 
+               <td> 
+                  <i>Guarani</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>gu</b> 
+               </td> 
+               <td> 
+                  <i>Gujarati</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>gv</b> 
+               </td> 
+               <td> 
+                  <i>Manx</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ha</b> 
+               </td> 
+               <td> 
+                  <i>Hausa</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>he</b> 
+               </td> 
+               <td> 
+                  <i>Hebrew</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>hi</b> 
+               </td> 
+               <td> 
+                  <i>Hindi</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ho</b> 
+               </td> 
+               <td> 
+                  <i>Hiri Motu</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>hr</b> 
+               </td> 
+               <td> 
+                  <i>Croatian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ht</b> 
+               </td> 
+               <td> 
+                  <i>Haitian; Haitian Creole</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>hu</b> 
+               </td> 
+               <td> 
+                  <i>Hungarian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>hy</b> 
+               </td> 
+               <td> 
+                  <i>Armenian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>hz</b> 
+               </td> 
+               <td> 
+                  <i>Herero</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ia</b> 
+               </td> 
+               <td> 
+                  <i>Interlingua (International Auxiliary Language Association)</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>id</b> 
+               </td> 
+               <td> 
+                  <i>Indonesian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ie</b> 
+               </td> 
+               <td> 
+                  <i>Interlingue; Occidental</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ig</b> 
+               </td> 
+               <td> 
+                  <i>Igbo</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ii</b> 
+               </td> 
+               <td> 
+                  <i>Sichuan Yi; Nuosu</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ik</b> 
+               </td> 
+               <td> 
+                  <i>Inupiaq</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>io</b> 
+               </td> 
+               <td> 
+                  <i>Ido</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>is</b> 
+               </td> 
+               <td> 
+                  <i>Icelandic</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>it</b> 
+               </td> 
+               <td> 
+                  <i>Italian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>iu</b> 
+               </td> 
+               <td> 
+                  <i>Inuktitut</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ja</b> 
+               </td> 
+               <td> 
+                  <i>Japanese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>jv</b> 
+               </td> 
+               <td> 
+                  <i>Javanese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ka</b> 
+               </td> 
+               <td> 
+                  <i>Georgian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ka</b> 
+               </td> 
+               <td> 
+                  <i>Georgian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kg</b> 
+               </td> 
+               <td> 
+                  <i>Kongo</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ki</b> 
+               </td> 
+               <td> 
+                  <i>Kikuyu; Gikuyu</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kj</b> 
+               </td> 
+               <td> 
+                  <i>Kuanyama; Kwanyama</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kk</b> 
+               </td> 
+               <td> 
+                  <i>Kazakh</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kl</b> 
+               </td> 
+               <td> 
+                  <i>Kalaallisut; Greenlandic</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>km</b> 
+               </td> 
+               <td> 
+                  <i>Central Khmer</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kn</b> 
+               </td> 
+               <td> 
+                  <i>Kannada</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ko</b> 
+               </td> 
+               <td> 
+                  <i>Korean</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kr</b> 
+               </td> 
+               <td> 
+                  <i>Kanuri</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ks</b> 
+               </td> 
+               <td> 
+                  <i>Kashmiri</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ku</b> 
+               </td> 
+               <td> 
+                  <i>Kurdish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kv</b> 
+               </td> 
+               <td> 
+                  <i>Komi</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>kw</b> 
+               </td> 
+               <td> 
+                  <i>Cornish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ky</b> 
+               </td> 
+               <td> 
+                  <i>Kirghiz; Kyrgyz</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>la</b> 
+               </td> 
+               <td> 
+                  <i>Latin</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>lb</b> 
+               </td> 
+               <td> 
+                  <i>Luxembourgish; Letzeburgesch</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>lg</b> 
+               </td> 
+               <td> 
+                  <i>Ganda</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>li</b> 
+               </td> 
+               <td> 
+                  <i>Limburgan; Limburger; Limburgish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ln</b> 
+               </td> 
+               <td> 
+                  <i>Lingala</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>lo</b> 
+               </td> 
+               <td> 
+                  <i>Lao</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>lt</b> 
+               </td> 
+               <td> 
+                  <i>Lithuanian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>lu</b> 
+               </td> 
+               <td> 
+                  <i>Luba-Katanga</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>lv</b> 
+               </td> 
+               <td> 
+                  <i>Latvian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mg</b> 
+               </td> 
+               <td> 
+                  <i>Malagasy</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mh</b> 
+               </td> 
+               <td> 
+                  <i>Marshallese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mi</b> 
+               </td> 
+               <td> 
+                  <i>Maori</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mk</b> 
+               </td> 
+               <td> 
+                  <i>Macedonian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mk</b> 
+               </td> 
+               <td> 
+                  <i>Macedonian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ml</b> 
+               </td> 
+               <td> 
+                  <i>Malayalam</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mn</b> 
+               </td> 
+               <td> 
+                  <i>Mongolian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mr</b> 
+               </td> 
+               <td> 
+                  <i>Marathi</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ms</b> 
+               </td> 
+               <td> 
+                  <i>Malay</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ms</b> 
+               </td> 
+               <td> 
+                  <i>Malay</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>mt</b> 
+               </td> 
+               <td> 
+                  <i>Maltese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>my</b> 
+               </td> 
+               <td> 
+                  <i>Burmese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>my</b> 
+               </td> 
+               <td> 
+                  <i>Burmese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>na</b> 
+               </td> 
+               <td> 
+                  <i>Nauru</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>nb</b> 
+               </td> 
+               <td> 
+                  <i>BokmÃ¥l, Norwegian; Norwegian BokmÃ¥l</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>nd</b> 
+               </td> 
+               <td> 
+                  <i>Ndebele, North; North Ndebele</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ne</b> 
+               </td> 
+               <td> 
+                  <i>Nepali</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ng</b> 
+               </td> 
+               <td> 
+                  <i>Ndonga</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>nl</b> 
+               </td> 
+               <td> 
+                  <i>Dutch; Flemish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>nn</b> 
+               </td> 
+               <td> 
+                  <i>Norwegian Nynorsk; Nynorsk, Norwegian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>no</b> 
+               </td> 
+               <td> 
+                  <i>Norwegian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>nr</b> 
+               </td> 
+               <td> 
+                  <i>Ndebele, South; South Ndebele</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>nv</b> 
+               </td> 
+               <td> 
+                  <i>Navajo; Navaho</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ny</b> 
+               </td> 
+               <td> 
+                  <i>Chichewa; Chewa; Nyanja</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>oc</b> 
+               </td> 
+               <td> 
+                  <i>Occitan (post 1500)</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>oj</b> 
+               </td> 
+               <td> 
+                  <i>Ojibwa</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>om</b> 
+               </td> 
+               <td> 
+                  <i>Oromo</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>or</b> 
+               </td> 
+               <td> 
+                  <i>Oriya</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>os</b> 
+               </td> 
+               <td> 
+                  <i>Ossetian; Ossetic</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>pa</b> 
+               </td> 
+               <td> 
+                  <i>Panjabi; Punjabi</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>pi</b> 
+               </td> 
+               <td> 
+                  <i>Pali</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>pl</b> 
+               </td> 
+               <td> 
+                  <i>Polish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ps</b> 
+               </td> 
+               <td> 
+                  <i>Pushto; Pashto</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>pt</b> 
+               </td> 
+               <td> 
+                  <i>Portuguese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>qu</b> 
+               </td> 
+               <td> 
+                  <i>Quechua</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>rm</b> 
+               </td> 
+               <td> 
+                  <i>Romansh</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>rn</b> 
+               </td> 
+               <td> 
+                  <i>Rundi</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ro</b> 
+               </td> 
+               <td> 
+                  <i>Romanian; Moldavian; Moldovan</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ru</b> 
+               </td> 
+               <td> 
+                  <i>Russian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>rw</b> 
+               </td> 
+               <td> 
+                  <i>Kinyarwanda</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sa</b> 
+               </td> 
+               <td> 
+                  <i>Sanskrit</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sc</b> 
+               </td> 
+               <td> 
+                  <i>Sardinian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sd</b> 
+               </td> 
+               <td> 
+                  <i>Sindhi</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>se</b> 
+               </td> 
+               <td> 
+                  <i>Northern Sami</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sg</b> 
+               </td> 
+               <td> 
+                  <i>Sango</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>si</b> 
+               </td> 
+               <td> 
+                  <i>Sinhala; Sinhalese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sk</b> 
+               </td> 
+               <td> 
+                  <i>Slovak</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sk</b> 
+               </td> 
+               <td> 
+                  <i>Slovak</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sl</b> 
+               </td> 
+               <td> 
+                  <i>Slovenian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sm</b> 
+               </td> 
+               <td> 
+                  <i>Samoan</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sn</b> 
+               </td> 
+               <td> 
+                  <i>Shona</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>so</b> 
+               </td> 
+               <td> 
+                  <i>Somali</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sq</b> 
+               </td> 
+               <td> 
+                  <i>Albanian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sq</b> 
+               </td> 
+               <td> 
+                  <i>Albanian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sr</b> 
+               </td> 
+               <td> 
+                  <i>Serbian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ss</b> 
+               </td> 
+               <td> 
+                  <i>Swati</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>st</b> 
+               </td> 
+               <td> 
+                  <i>Sotho, Southern</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>su</b> 
+               </td> 
+               <td> 
+                  <i>Sundanese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sv</b> 
+               </td> 
+               <td> 
+                  <i>Swedish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>sw</b> 
+               </td> 
+               <td> 
+                  <i>Swahili</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ta</b> 
+               </td> 
+               <td> 
+                  <i>Tamil</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>te</b> 
+               </td> 
+               <td> 
+                  <i>Telugu</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>tg</b> 
+               </td> 
+               <td> 
+                  <i>Tajik</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>th</b> 
+               </td> 
+               <td> 
+                  <i>Thai</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ti</b> 
+               </td> 
+               <td> 
+                  <i>Tigrinya</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>tk</b> 
+               </td> 
+               <td> 
+                  <i>Turkmen</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>tl</b> 
+               </td> 
+               <td> 
+                  <i>Tagalog</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>tn</b> 
+               </td> 
+               <td> 
+                  <i>Tswana</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>to</b> 
+               </td> 
+               <td> 
+                  <i>Tonga (Tonga Islands)</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>tr</b> 
+               </td> 
+               <td> 
+                  <i>Turkish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ts</b> 
+               </td> 
+               <td> 
+                  <i>Tsonga</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>tt</b> 
+               </td> 
+               <td> 
+                  <i>Tatar</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>tw</b> 
+               </td> 
+               <td> 
+                  <i>Twi</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ty</b> 
+               </td> 
+               <td> 
+                  <i>Tahitian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ug</b> 
+               </td> 
+               <td> 
+                  <i>Uighur; Uyghur</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>uk</b> 
+               </td> 
+               <td> 
+                  <i>Ukrainian</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ur</b> 
+               </td> 
+               <td> 
+                  <i>Urdu</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>uz</b> 
+               </td> 
+               <td> 
+                  <i>Uzbek</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>ve</b> 
+               </td> 
+               <td> 
+                  <i>Venda</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>vi</b> 
+               </td> 
+               <td> 
+                  <i>Vietnamese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>vo</b> 
+               </td> 
+               <td> 
+                  <i>VolapÃ¼k</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>wa</b> 
+               </td> 
+               <td> 
+                  <i>Walloon</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>wo</b> 
+               </td> 
+               <td> 
+                  <i>Wolof</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>xh</b> 
+               </td> 
+               <td> 
+                  <i>Xhosa</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>yi</b> 
+               </td> 
+               <td> 
+                  <i>Yiddish</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>yo</b> 
+               </td> 
+               <td> 
+                  <i>Yoruba</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>za</b> 
+               </td> 
+               <td> 
+                  <i>Zhuang; Chuang</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>zh</b> 
+               </td> 
+               <td> 
+                  <i>Chinese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>zh</b> 
+               </td> 
+               <td> 
+                  <i>Chinese</i> 
+               </td> 
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>zu</b> 
+               </td> 
+               <td> 
+                  <i>Zulu</i> 
+               </td> 
+            </tr> 
+         </table> 
+      </div>
+   </text>
+   <url value="http://hl7.org/fhir/us/core/ValueSet/simple-language"/>
+   <version value="1.1.0"/>
+   <name value="Language codes with language and optionally a region modifier"/>
+   <status value="draft"/>
+   <date value="2017-02-28T00:00:00+00:00"/>
+   <publisher value="HL7 US Realm Steering Committee"/>
+   <contact>
+      <telecom>
+         <system value="url"/>
+         <value value="http://hl7.org/fhir"/>
+      </telecom>
+   </contact>
+   <description value="This value set includes codes from [BCP-47](http://tools.ietf.org/html/bcp47). This value set matches the ONC 2015 Edition LanguageCommunication data element value set within C-CDA to use a 2 character language code if one exists,   and a 3 character code if a 2 character code does not exist. It points back to [RFC 5646](https://tools.ietf.org/html/rfc5646), however only the language codes are required, all other elements are optional."/>
+   <jurisdiction>
+      <coding>
+         <system value="urn:iso:std:iso:3166"/>
+         <code value="US"/>
+      </coding>
+   </jurisdiction>
+   <compose>
+      <include>
+         <system value="urn:ietf:bcp:47"/>
+         <concept>
+            <code value="aa"/>
+            <display value="Afar"/>
+         </concept>
+         <concept>
+            <code value="ab"/>
+            <display value="Abkhazian"/>
+         </concept>
+         <concept>
+            <code value="ae"/>
+            <display value="Avestan"/>
+         </concept>
+         <concept>
+            <code value="af"/>
+            <display value="Afrikaans"/>
+         </concept>
+         <concept>
+            <code value="ak"/>
+            <display value="Akan"/>
+         </concept>
+         <concept>
+            <code value="am"/>
+            <display value="Amharic"/>
+         </concept>
+         <concept>
+            <code value="an"/>
+            <display value="Aragonese"/>
+         </concept>
+         <concept>
+            <code value="ar"/>
+            <display value="Arabic"/>
+         </concept>
+         <concept>
+            <code value="as"/>
+            <display value="Assamese"/>
+         </concept>
+         <concept>
+            <code value="av"/>
+            <display value="Avaric"/>
+         </concept>
+         <concept>
+            <code value="ay"/>
+            <display value="Aymara"/>
+         </concept>
+         <concept>
+            <code value="az"/>
+            <display value="Azerbaijani"/>
+         </concept>
+         <concept>
+            <code value="ba"/>
+            <display value="Bashkir"/>
+         </concept>
+         <concept>
+            <code value="be"/>
+            <display value="Belarusian"/>
+         </concept>
+         <concept>
+            <code value="bg"/>
+            <display value="Bulgarian"/>
+         </concept>
+         <concept>
+            <code value="bh"/>
+            <display value="Bihari languages"/>
+         </concept>
+         <concept>
+            <code value="bi"/>
+            <display value="Bislama"/>
+         </concept>
+         <concept>
+            <code value="bm"/>
+            <display value="Bambara"/>
+         </concept>
+         <concept>
+            <code value="bn"/>
+            <display value="Bengali"/>
+         </concept>
+         <concept>
+            <code value="bo"/>
+            <display value="Tibetan"/>
+         </concept>
+         <concept>
+            <code value="bo"/>
+            <display value="Tibetan"/>
+         </concept>
+         <concept>
+            <code value="br"/>
+            <display value="Breton"/>
+         </concept>
+         <concept>
+            <code value="bs"/>
+            <display value="Bosnian"/>
+         </concept>
+         <concept>
+            <code value="ca"/>
+            <display value="Catalan; Valencian"/>
+         </concept>
+         <concept>
+            <code value="ce"/>
+            <display value="Chechen"/>
+         </concept>
+         <concept>
+            <code value="ch"/>
+            <display value="Chamorro"/>
+         </concept>
+         <concept>
+            <code value="co"/>
+            <display value="Corsican"/>
+         </concept>
+         <concept>
+            <code value="cr"/>
+            <display value="Cree"/>
+         </concept>
+         <concept>
+            <code value="cs"/>
+            <display value="Czech"/>
+         </concept>
+         <concept>
+            <code value="cs"/>
+            <display value="Czech"/>
+         </concept>
+         <concept>
+            <code value="cu"/>
+            <display value="Church Slavic"/>
+         </concept>
+         <concept>
+            <code value="cv"/>
+            <display value="Chuvash"/>
+         </concept>
+         <concept>
+            <code value="cy"/>
+            <display value="Welsh"/>
+         </concept>
+         <concept>
+            <code value="cy"/>
+            <display value="Welsh"/>
+         </concept>
+         <concept>
+            <code value="da"/>
+            <display value="Danish"/>
+         </concept>
+         <concept>
+            <code value="de"/>
+            <display value="German"/>
+         </concept>
+         <concept>
+            <code value="dv"/>
+            <display value="Divehi; Dhivehi; Maldivian"/>
+         </concept>
+         <concept>
+            <code value="dz"/>
+            <display value="Dzongkha"/>
+         </concept>
+         <concept>
+            <code value="ee"/>
+            <display value="Ewe"/>
+         </concept>
+         <concept>
+            <code value="el"/>
+            <display value="Greek, Modern (1453-)"/>
+         </concept>
+         <concept>
+            <code value="el"/>
+            <display value="Greek, Modern (1453-)"/>
+         </concept>
+         <concept>
+            <code value="en"/>
+            <display value="English"/>
+         </concept>
+         <concept>
+            <code value="eo"/>
+            <display value="Esperanto"/>
+         </concept>
+         <concept>
+            <code value="es"/>
+            <display value="Spanish; Castilian"/>
+         </concept>
+         <concept>
+            <code value="et"/>
+            <display value="Estonian"/>
+         </concept>
+         <concept>
+            <code value="eu"/>
+            <display value="Basque"/>
+         </concept>
+         <concept>
+            <code value="eu"/>
+            <display value="Basque"/>
+         </concept>
+         <concept>
+            <code value="fa"/>
+            <display value="Persian"/>
+         </concept>
+         <concept>
+            <code value="fa"/>
+            <display value="Persian"/>
+         </concept>
+         <concept>
+            <code value="ff"/>
+            <display value="Fulah"/>
+         </concept>
+         <concept>
+            <code value="fi"/>
+            <display value="Finnish"/>
+         </concept>
+         <concept>
+            <code value="fj"/>
+            <display value="Fijian"/>
+         </concept>
+         <concept>
+            <code value="fo"/>
+            <display value="Faroese"/>
+         </concept>
+         <concept>
+            <code value="fr"/>
+            <display value="French"/>
+         </concept>
+         <concept>
+            <code value="fr"/>
+            <display value="French"/>
+         </concept>
+         <concept>
+            <code value="fy"/>
+            <display value="Western Frisian"/>
+         </concept>
+         <concept>
+            <code value="ga"/>
+            <display value="Irish"/>
+         </concept>
+         <concept>
+            <code value="gd"/>
+            <display value="Gaelic; Scottish Gaelic"/>
+         </concept>
+         <concept>
+            <code value="gl"/>
+            <display value="Galician"/>
+         </concept>
+         <concept>
+            <code value="gn"/>
+            <display value="Guarani"/>
+         </concept>
+         <concept>
+            <code value="gu"/>
+            <display value="Gujarati"/>
+         </concept>
+         <concept>
+            <code value="gv"/>
+            <display value="Manx"/>
+         </concept>
+         <concept>
+            <code value="ha"/>
+            <display value="Hausa"/>
+         </concept>
+         <concept>
+            <code value="he"/>
+            <display value="Hebrew"/>
+         </concept>
+         <concept>
+            <code value="hi"/>
+            <display value="Hindi"/>
+         </concept>
+         <concept>
+            <code value="ho"/>
+            <display value="Hiri Motu"/>
+         </concept>
+         <concept>
+            <code value="hr"/>
+            <display value="Croatian"/>
+         </concept>
+         <concept>
+            <code value="ht"/>
+            <display value="Haitian; Haitian Creole"/>
+         </concept>
+         <concept>
+            <code value="hu"/>
+            <display value="Hungarian"/>
+         </concept>
+         <concept>
+            <code value="hy"/>
+            <display value="Armenian"/>
+         </concept>
+         <concept>
+            <code value="hz"/>
+            <display value="Herero"/>
+         </concept>
+         <concept>
+            <code value="ia"/>
+            <display value="Interlingua (International Auxiliary Language Association)"/>
+         </concept>
+         <concept>
+            <code value="id"/>
+            <display value="Indonesian"/>
+         </concept>
+         <concept>
+            <code value="ie"/>
+            <display value="Interlingue; Occidental"/>
+         </concept>
+         <concept>
+            <code value="ig"/>
+            <display value="Igbo"/>
+         </concept>
+         <concept>
+            <code value="ii"/>
+            <display value="Sichuan Yi; Nuosu"/>
+         </concept>
+         <concept>
+            <code value="ik"/>
+            <display value="Inupiaq"/>
+         </concept>
+         <concept>
+            <code value="io"/>
+            <display value="Ido"/>
+         </concept>
+         <concept>
+            <code value="is"/>
+            <display value="Icelandic"/>
+         </concept>
+         <concept>
+            <code value="it"/>
+            <display value="Italian"/>
+         </concept>
+         <concept>
+            <code value="iu"/>
+            <display value="Inuktitut"/>
+         </concept>
+         <concept>
+            <code value="ja"/>
+            <display value="Japanese"/>
+         </concept>
+         <concept>
+            <code value="jv"/>
+            <display value="Javanese"/>
+         </concept>
+         <concept>
+            <code value="ka"/>
+            <display value="Georgian"/>
+         </concept>
+         <concept>
+            <code value="ka"/>
+            <display value="Georgian"/>
+         </concept>
+         <concept>
+            <code value="kg"/>
+            <display value="Kongo"/>
+         </concept>
+         <concept>
+            <code value="ki"/>
+            <display value="Kikuyu; Gikuyu"/>
+         </concept>
+         <concept>
+            <code value="kj"/>
+            <display value="Kuanyama; Kwanyama"/>
+         </concept>
+         <concept>
+            <code value="kk"/>
+            <display value="Kazakh"/>
+         </concept>
+         <concept>
+            <code value="kl"/>
+            <display value="Kalaallisut; Greenlandic"/>
+         </concept>
+         <concept>
+            <code value="km"/>
+            <display value="Central Khmer"/>
+         </concept>
+         <concept>
+            <code value="kn"/>
+            <display value="Kannada"/>
+         </concept>
+         <concept>
+            <code value="ko"/>
+            <display value="Korean"/>
+         </concept>
+         <concept>
+            <code value="kr"/>
+            <display value="Kanuri"/>
+         </concept>
+         <concept>
+            <code value="ks"/>
+            <display value="Kashmiri"/>
+         </concept>
+         <concept>
+            <code value="ku"/>
+            <display value="Kurdish"/>
+         </concept>
+         <concept>
+            <code value="kv"/>
+            <display value="Komi"/>
+         </concept>
+         <concept>
+            <code value="kw"/>
+            <display value="Cornish"/>
+         </concept>
+         <concept>
+            <code value="ky"/>
+            <display value="Kirghiz; Kyrgyz"/>
+         </concept>
+         <concept>
+            <code value="la"/>
+            <display value="Latin"/>
+         </concept>
+         <concept>
+            <code value="lb"/>
+            <display value="Luxembourgish; Letzeburgesch"/>
+         </concept>
+         <concept>
+            <code value="lg"/>
+            <display value="Ganda"/>
+         </concept>
+         <concept>
+            <code value="li"/>
+            <display value="Limburgan; Limburger; Limburgish"/>
+         </concept>
+         <concept>
+            <code value="ln"/>
+            <display value="Lingala"/>
+         </concept>
+         <concept>
+            <code value="lo"/>
+            <display value="Lao"/>
+         </concept>
+         <concept>
+            <code value="lt"/>
+            <display value="Lithuanian"/>
+         </concept>
+         <concept>
+            <code value="lu"/>
+            <display value="Luba-Katanga"/>
+         </concept>
+         <concept>
+            <code value="lv"/>
+            <display value="Latvian"/>
+         </concept>
+         <concept>
+            <code value="mg"/>
+            <display value="Malagasy"/>
+         </concept>
+         <concept>
+            <code value="mh"/>
+            <display value="Marshallese"/>
+         </concept>
+         <concept>
+            <code value="mi"/>
+            <display value="Maori"/>
+         </concept>
+         <concept>
+            <code value="mk"/>
+            <display value="Macedonian"/>
+         </concept>
+         <concept>
+            <code value="mk"/>
+            <display value="Macedonian"/>
+         </concept>
+         <concept>
+            <code value="ml"/>
+            <display value="Malayalam"/>
+         </concept>
+         <concept>
+            <code value="mn"/>
+            <display value="Mongolian"/>
+         </concept>
+         <concept>
+            <code value="mr"/>
+            <display value="Marathi"/>
+         </concept>
+         <concept>
+            <code value="ms"/>
+            <display value="Malay"/>
+         </concept>
+         <concept>
+            <code value="ms"/>
+            <display value="Malay"/>
+         </concept>
+         <concept>
+            <code value="mt"/>
+            <display value="Maltese"/>
+         </concept>
+         <concept>
+            <code value="my"/>
+            <display value="Burmese"/>
+         </concept>
+         <concept>
+            <code value="my"/>
+            <display value="Burmese"/>
+         </concept>
+         <concept>
+            <code value="na"/>
+            <display value="Nauru"/>
+         </concept>
+         <concept>
+            <code value="nb"/>
+            <display value="BokmÃ¥l, Norwegian; Norwegian BokmÃ¥l"/>
+         </concept>
+         <concept>
+            <code value="nd"/>
+            <display value="Ndebele, North; North Ndebele"/>
+         </concept>
+         <concept>
+            <code value="ne"/>
+            <display value="Nepali"/>
+         </concept>
+         <concept>
+            <code value="ng"/>
+            <display value="Ndonga"/>
+         </concept>
+         <concept>
+            <code value="nl"/>
+            <display value="Dutch; Flemish"/>
+         </concept>
+         <concept>
+            <code value="nn"/>
+            <display value="Norwegian Nynorsk; Nynorsk, Norwegian"/>
+         </concept>
+         <concept>
+            <code value="no"/>
+            <display value="Norwegian"/>
+         </concept>
+         <concept>
+            <code value="nr"/>
+            <display value="Ndebele, South; South Ndebele"/>
+         </concept>
+         <concept>
+            <code value="nv"/>
+            <display value="Navajo; Navaho"/>
+         </concept>
+         <concept>
+            <code value="ny"/>
+            <display value="Chichewa; Chewa; Nyanja"/>
+         </concept>
+         <concept>
+            <code value="oc"/>
+            <display value="Occitan (post 1500)"/>
+         </concept>
+         <concept>
+            <code value="oj"/>
+            <display value="Ojibwa"/>
+         </concept>
+         <concept>
+            <code value="om"/>
+            <display value="Oromo"/>
+         </concept>
+         <concept>
+            <code value="or"/>
+            <display value="Oriya"/>
+         </concept>
+         <concept>
+            <code value="os"/>
+            <display value="Ossetian; Ossetic"/>
+         </concept>
+         <concept>
+            <code value="pa"/>
+            <display value="Panjabi; Punjabi"/>
+         </concept>
+         <concept>
+            <code value="pi"/>
+            <display value="Pali"/>
+         </concept>
+         <concept>
+            <code value="pl"/>
+            <display value="Polish"/>
+         </concept>
+         <concept>
+            <code value="ps"/>
+            <display value="Pushto; Pashto"/>
+         </concept>
+         <concept>
+            <code value="pt"/>
+            <display value="Portuguese"/>
+         </concept>
+         <concept>
+            <code value="qu"/>
+            <display value="Quechua"/>
+         </concept>
+         <concept>
+            <code value="rm"/>
+            <display value="Romansh"/>
+         </concept>
+         <concept>
+            <code value="rn"/>
+            <display value="Rundi"/>
+         </concept>
+         <concept>
+            <code value="ro"/>
+            <display value="Romanian; Moldavian; Moldovan"/>
+         </concept>
+         <concept>
+            <code value="ru"/>
+            <display value="Russian"/>
+         </concept>
+         <concept>
+            <code value="rw"/>
+            <display value="Kinyarwanda"/>
+         </concept>
+         <concept>
+            <code value="sa"/>
+            <display value="Sanskrit"/>
+         </concept>
+         <concept>
+            <code value="sc"/>
+            <display value="Sardinian"/>
+         </concept>
+         <concept>
+            <code value="sd"/>
+            <display value="Sindhi"/>
+         </concept>
+         <concept>
+            <code value="se"/>
+            <display value="Northern Sami"/>
+         </concept>
+         <concept>
+            <code value="sg"/>
+            <display value="Sango"/>
+         </concept>
+         <concept>
+            <code value="si"/>
+            <display value="Sinhala; Sinhalese"/>
+         </concept>
+         <concept>
+            <code value="sk"/>
+            <display value="Slovak"/>
+         </concept>
+         <concept>
+            <code value="sk"/>
+            <display value="Slovak"/>
+         </concept>
+         <concept>
+            <code value="sl"/>
+            <display value="Slovenian"/>
+         </concept>
+         <concept>
+            <code value="sm"/>
+            <display value="Samoan"/>
+         </concept>
+         <concept>
+            <code value="sn"/>
+            <display value="Shona"/>
+         </concept>
+         <concept>
+            <code value="so"/>
+            <display value="Somali"/>
+         </concept>
+         <concept>
+            <code value="sq"/>
+            <display value="Albanian"/>
+         </concept>
+         <concept>
+            <code value="sq"/>
+            <display value="Albanian"/>
+         </concept>
+         <concept>
+            <code value="sr"/>
+            <display value="Serbian"/>
+         </concept>
+         <concept>
+            <code value="ss"/>
+            <display value="Swati"/>
+         </concept>
+         <concept>
+            <code value="st"/>
+            <display value="Sotho, Southern"/>
+         </concept>
+         <concept>
+            <code value="su"/>
+            <display value="Sundanese"/>
+         </concept>
+         <concept>
+            <code value="sv"/>
+            <display value="Swedish"/>
+         </concept>
+         <concept>
+            <code value="sw"/>
+            <display value="Swahili"/>
+         </concept>
+         <concept>
+            <code value="ta"/>
+            <display value="Tamil"/>
+         </concept>
+         <concept>
+            <code value="te"/>
+            <display value="Telugu"/>
+         </concept>
+         <concept>
+            <code value="tg"/>
+            <display value="Tajik"/>
+         </concept>
+         <concept>
+            <code value="th"/>
+            <display value="Thai"/>
+         </concept>
+         <concept>
+            <code value="ti"/>
+            <display value="Tigrinya"/>
+         </concept>
+         <concept>
+            <code value="tk"/>
+            <display value="Turkmen"/>
+         </concept>
+         <concept>
+            <code value="tl"/>
+            <display value="Tagalog"/>
+         </concept>
+         <concept>
+            <code value="tn"/>
+            <display value="Tswana"/>
+         </concept>
+         <concept>
+            <code value="to"/>
+            <display value="Tonga (Tonga Islands)"/>
+         </concept>
+         <concept>
+            <code value="tr"/>
+            <display value="Turkish"/>
+         </concept>
+         <concept>
+            <code value="ts"/>
+            <display value="Tsonga"/>
+         </concept>
+         <concept>
+            <code value="tt"/>
+            <display value="Tatar"/>
+         </concept>
+         <concept>
+            <code value="tw"/>
+            <display value="Twi"/>
+         </concept>
+         <concept>
+            <code value="ty"/>
+            <display value="Tahitian"/>
+         </concept>
+         <concept>
+            <code value="ug"/>
+            <display value="Uighur; Uyghur"/>
+         </concept>
+         <concept>
+            <code value="uk"/>
+            <display value="Ukrainian"/>
+         </concept>
+         <concept>
+            <code value="ur"/>
+            <display value="Urdu"/>
+         </concept>
+         <concept>
+            <code value="uz"/>
+            <display value="Uzbek"/>
+         </concept>
+         <concept>
+            <code value="ve"/>
+            <display value="Venda"/>
+         </concept>
+         <concept>
+            <code value="vi"/>
+            <display value="Vietnamese"/>
+         </concept>
+         <concept>
+            <code value="vo"/>
+            <display value="VolapÃ¼k"/>
+         </concept>
+         <concept>
+            <code value="wa"/>
+            <display value="Walloon"/>
+         </concept>
+         <concept>
+            <code value="wo"/>
+            <display value="Wolof"/>
+         </concept>
+         <concept>
+            <code value="xh"/>
+            <display value="Xhosa"/>
+         </concept>
+         <concept>
+            <code value="yi"/>
+            <display value="Yiddish"/>
+         </concept>
+         <concept>
+            <code value="yo"/>
+            <display value="Yoruba"/>
+         </concept>
+         <concept>
+            <code value="za"/>
+            <display value="Zhuang; Chuang"/>
+         </concept>
+         <concept>
+            <code value="zh"/>
+            <display value="Chinese"/>
+         </concept>
+         <concept>
+            <code value="zh"/>
+            <display value="Chinese"/>
+         </concept>
+         <concept>
+            <code value="zu"/>
+            <display value="Zulu"/>
+         </concept>
+      </include>
+   </compose>
+</ValueSet>

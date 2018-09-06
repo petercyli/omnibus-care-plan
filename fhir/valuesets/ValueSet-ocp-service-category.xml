@@ -1,0 +1,177 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="ocp-service-category"/> 
+  <meta> 
+  <versionId value="1"/>
+    <lastUpdated value="2018-02-19T07:44:43.294+10:00"/> 
+  </meta> 
+  <text> 
+    <status value="generated"/> 
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h2> Supported Service Categories </h2> 
+      <div> 
+        <p> This value set defines subset of codes that can be used to classify groupings of service-types/specialties.</p> 
+      </div> 
+      <p> This value set is a subset of codes from the following code systems:</p> 
+      <ul> 
+        <li> Include subset of the codes defined in 
+          <a href="codesystem-service-category.html">
+            <code> http://hl7.org/fhir/service-category</code> 
+          </a>
+        </li> 
+      </ul> 
+	  <h3> This is a subset of service categories value set and may be updated later. </h3> 
+    <table class="none"> 
+            <tr> 
+               <td> 
+                  <b> Code</b> 
+               </td> 
+               <td> 
+                  <b> Display</b> 
+               </td> 
+			  
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>2</b> 
+               </td> 
+               <td> 
+                  <i>Aged Care</i> 
+               </td> 
+			  
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>6</b> 
+               </td> 
+               <td> 
+                  <i>Child Protection and Family Services</i> 
+               </td> 
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>7</b> 
+               </td> 
+               <td> 
+                  <i>Community Health Care</i> 
+               </td> 
+			  
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>8</b> 
+               </td> 
+               <td> 
+                  <i>Counselling</i> 
+               </td> 
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>11</b> 
+               </td> 
+               <td> 
+                  <i>Disability Support</i> 
+               </td> 
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>12</b> 
+               </td> 
+               <td> 
+                  <i>Drug/Alcohol</i> 
+               </td>
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>13</b> 
+               </td> 
+               <td> 
+                  <i>Education and Learning</i> 
+               </td> 
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>18</b> 
+               </td> 
+               <td> 
+                  <i>Housing/Homelessness</i> 
+               </td>
+				 			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>22</b> 
+               </td> 
+               <td> 
+                  <i>Mental Health</i> 
+               </td> 
+			   
+            </tr> 
+         </table> 
+	</div> 
+  </text> 
+  <url value="http://www.hl7.org/fhir/ValueSet/service-category"/>
+    <version value="1.1.0"/> 
+  <name value="Service Category codes that can be used to classify groupings of service-types/specialties."/> 
+  <status value="draft"/> 
+    <date value="2017-04-19T07:44:43+10:00"/> 
+  <publisher value="HL7 US Realm Steering Committee"/> 
+  <contact> 
+    <telecom> 
+      <system value="url"/> 
+      <value value="http://hl7.org/fhir"/> 
+    </telecom> 
+  </contact> 
+  <description value="This value set defines subset of codes that can be used to classify groupings
+   of service-types/specialties, however the service category codes are required, all other elements are optional."/> 
+   <jurisdiction>
+      <coding>
+         <system value="urn:iso:std:iso:3166"/>
+         <code value="US"/>
+      </coding>
+   </jurisdiction>
+  <compose> 
+    <include> 
+      <system value="http://hl7.org/fhir/service-category"/> 
+	  <concept>
+            <code value="2"/>
+            <display value="Aged Care"/>
+	</concept>
+         <concept>
+            <code value="6"/>
+            <display value="Child Protection and Family Services"/>         </concept>
+         <concept>
+            <code value="7"/>
+            <display value="Community Health Care"/>
+         </concept>
+         <concept>
+            <code value="8"/>
+            <display value="Counselling"/>
+		</concept>
+         <concept>
+            <code value="11"/>
+            <display value="Disability Support"/>
+         </concept>
+         <concept>
+            <code value="12"/>
+            <display value="Drug/Alcohol"/>
+         </concept>
+         <concept>
+            <code value="13"/>
+            <display value="Education and Learning"/>
+		</concept>
+         <concept>
+            <code value="18"/>
+            <display value="Housing/Homelessness"/>
+		</concept>
+         <concept>
+            <code value="22"/>
+            <display value="Mental Health"/>
+         </concept>
+     </include> 
+  </compose> 
+</ValueSet> 

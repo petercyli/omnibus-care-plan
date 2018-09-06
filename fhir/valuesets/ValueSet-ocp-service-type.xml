@@ -1,0 +1,147 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+  <id value="ocp-service-type"/> 
+  <meta> 
+    <versionId value="1"/>
+	<lastUpdated value="2018-02-23T07:44:43.294+10:00"/> 
+    </meta> 
+  <text> 
+    <status value="generated"/> 
+    <div xmlns="http://www.w3.org/1999/xhtml">
+      <h2> Supported Service Types </h2> 
+      <div> 
+        <p> This value set defines subset of codes of service-types.</p> 
+
+      </div> 
+      <p> This value set is a subset of codes from the following code systems:</p> 
+      <ul> 
+        <li> Include subset of the CPT codes defined in 
+          <a href="https://coder.aapc.com/cpt-codes/">
+            <code> https://coder.aapc.com/cpt-codes/</code> 
+          </a> 
+        </li> 
+      </ul> 
+	  <ul> 
+        <li> Include subset of the HCPCS codes defined in 
+          <a href="https://coder.aapc.com/hcpcs-codes/">
+        	<code> https://coder.aapc.com/hcpcs-codes/</code> 
+          </a> 
+        </li> 
+      </ul> 
+	  <h3> This is a subset of service types value set of CPT-4, HCPCS Codes and may be updated later. </h3> 
+	  <table class="none"> 
+            <tr> 
+               <td> 
+                  <b> Code</b> 
+               </td> 
+               <td> 
+                  <b> Display</b> 
+               </td> 
+			  
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>S9482</b> 
+               </td> 
+               <td> 
+                  <i>Family stabilization services, per 15 minutes</i> 
+               </td> 
+			  
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>S0221</b> 
+               </td> 
+               <td> 
+                  <i>Medical conference by a physician with interdisciplinary team of health professionals or representatives of community agencies to coordinate activities of patient care (patient is present); approximately 60 minutes</i> 
+               </td> 
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>T1006</b> 
+               </td> 
+               <td> 
+                  <i>Hospice evaluation and counseling services, pre-election</i> 
+               </td> 
+			  
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>H0006</b> 
+               </td> 
+               <td> 
+                  <i>Alcohol and/or drug services; case management</i> 
+               </td> 
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>H0025</b> 
+               </td> 
+               <td> 
+                  <i>Behavioral health prevention education service (delivery of services with target population to affect knowledge, attitude and/or behavior)</i> 
+               </td> 
+			   
+            </tr> 
+            <tr> 
+               <td> 
+                  <b>H0035</b> 
+               </td> 
+               <td> 
+                  <i>Mental health partial hospitalization, treatment, less than 24 hours</i> 
+               </td>
+            </tr> 
+           
+         </table> 
+    </div> 
+  </text> 
+  <url value="http://www.hl7.org/fhir/ValueSet/service-type"/>
+     <version value="1.1.0"/> 
+	 <name value="Service Type codes that can be used to define services performed"/> 
+  <status value="draft"/> 
+  <experimental value="true"/> 
+  <date value="2017-04-19T07:44:43+10:00"/> 
+  <publisher value="HL7 US Realm Steering Committee"/>
+  <contact> 
+    <telecom> 
+      <system value="url"/> 
+      <value value="http://hl7.org/fhir"/> 
+    </telecom> 
+  </contact> 
+  <description value="This value set defines subset of codes for service-types."/> 
+  <jurisdiction>
+      <coding>
+         <system value="urn:iso:std:iso:3166"/>
+         <code value="US"/>
+      </coding>
+   </jurisdiction>
+  <compose> 
+    <include> 
+      <system value="http://hl7.org/fhir/service-type"/> 
+	  <concept>
+            <code value="S9482"/>
+            <display value="Family stabilization services, per 15 minutes"/>
+	</concept>
+         <concept>
+            <code value="S0221"/>
+            <display value="Medical conference by a physician with interdisciplinary team of health professionals or representatives of community agencies to coordinate activities of patient care (patient is present); approximately 60 minutes"/>         
+		</concept>
+         <concept>
+            <code value="T1006"/>
+            <display value="Hospice evaluation and counseling services, pre-election"/>
+         </concept>
+         <concept>
+            <code value="H0006"/>
+            <display value="Alcohol and/or drug services; case management"/>
+		</concept>
+         <concept>
+            <code value="H0025"/>
+            <display value="Behavioral health prevention education service (delivery of services with target population to affect knowledge, attitude and/or behavior)"/>
+         </concept>
+         <concept>
+            <code value="H0035"/>
+            <display value="Mental health partial hospitalization, treatment, less than 24 hours"/>
+         </concept>
+      </include> 
+  </compose> 
+</ValueSet> 

@@ -1,0 +1,1628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<StructureDefinition xmlns="http://hl7.org/fhir">
+  <id value="ocp-episodeofcare" />
+  <meta>
+    <versionId value="1" />
+    <lastUpdated value="2018-04-27T21:54:39.184+00:00" />
+  </meta>
+  <language value="US-en" />
+  <text>
+    <status value="generated" /><div xmlns="http://www.w3.org/1999/xhtml">
+The FHIR STU3 (Release 3) Omnibus Care Plan (OCP) EpisodeOfCare profile uses FHIR resources and describes minimum expectations for the EpisodeOfCare with supported data elements and changes to the cardinality about an individual OCP patient. It identifies which core elements, extensions, vocabularies and value sets SHALL be present in the resource when using this profile.
+Dependencies:
+   EpisodeOfCare profile that conform to this specification must include reference to other resources 
+<ul><li>OCP-Patient</li><li>Condition</li><li>Organization</li><li>ReferralRequest</li><li>OCP-Practitioner</li><li>CareTeam</li><li>Account</li></ul></div></text>
+  <url value="http://hl7.org/fhir/StructureDefinition/ocp-episodeofcare" />
+  <version value="1.0" />
+  <name value="OCP EpisodeOfCare Profile" />
+  <title value="OCP EpisodeOfCare Profile" />
+  <status value="draft" />
+  <date value="2018-03-23T00:30:10.643-04:00" />
+  <publisher value="SAMHSA" />
+  <contact>
+    <name value="Neelima Chennamaraja" />
+    <telecom>
+      <system value="url" />
+      <value value="www.eversolve.com" />
+      <period>
+        <start value="1999-06-15" />
+      </period>
+    </telecom>
+    <telecom>
+      <system value="email" />
+      <value value="neelima@eversolve.com" />
+      <use value="work" />
+    </telecom>
+  </contact>
+  <description value="The EpisodeOfCare Profile contains information about an association of a Omnibus Care Plan (OCP) Patient with a Healthcare Provider for a period of time under which related healthcare activities may occur. In many cases, this represents a period of time where the Healthcare Provider has some level of responsibility for the care of the patient regarding a specific condition or problem, even if not currently participating in an encounter.&#xD;&#xA;The EpisodeOfCare profile is primarily used as a tracking resource, and contains details about the purpose of the care and can exist without any activities. The minimal information that would be required in an episode of care would be a OCP patient, organization and a reason for the ongoing association. Other reasons for creating an EpisodeOfCare could be for tracking the details required for government reporting or billing.&#xD;&#xA;The primary difference between the EpisodeOfCare and the Encounter is that the Encounter records the details of an activity directly relating to the patient, while the EpisodeOfCare is the container that can link a series of Encounters together for problems/issues.&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;" />
+  <jurisdiction>
+    <coding>
+      <code value="US" />
+      <display value="US-Realm" />
+    </coding>
+    <text value="US-Realm OCP EpisodeOfCare Profile published by SAMHSA" />
+  </jurisdiction>
+  <purpose value="This profile for EpisodeOfCare includes all the elements related to basic need for OCP (which could change over time). This profile is intended to be implemented by OCP (Omnibus Care Plan) systems. &#xD;&#xA;&#xD;&#xA;" />
+  <copyright value="+Copyright (c) 2017 SAMHSA. All Rights Reserved." />
+  <fhirVersion value="3.0.1" />
+  <kind value="resource" />
+  <abstract value="false" />
+  <type value="EpisodeOfCare" />
+  <baseDefinition value="http://hl7.org/fhir/StructureDefinition/EpisodeOfCare" />
+  <derivation value="constraint" />
+  <snapshot>
+    <element id="EpisodeOfCare">
+      <path value="EpisodeOfCare" />
+      <short value="An association of a Patient with an Organization and  Healthcare Provider(s) for a period of time that the Organization assumes some level of responsibility" />
+      <definition value="An association between a patient and an organization / healthcare provider(s) during which time encounters may occur. The managing organization assumes a level of responsibility for the patient during this time." />
+      <alias value="Case Program Problem" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Resource" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <constraint>
+        <key value="dom-2" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain nested Resources" />
+        <expression value="contained.contained.empty()" />
+        <xpath value="not(parent::f:contained and f:contained)" />
+      </constraint>
+      <constraint>
+        <key value="dom-1" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL NOT contain any narrative" />
+        <expression value="contained.text.empty()" />
+        <xpath value="not(parent::f:contained and f:text)" />
+      </constraint>
+      <constraint>
+        <key value="dom-4" />
+        <severity value="error" />
+        <human value="If a resource is contained in another resource, it SHALL NOT have a meta.versionId or a meta.lastUpdated" />
+        <expression value="contained.meta.versionId.empty() and contained.meta.lastUpdated.empty()" />
+        <xpath value="not(exists(f:contained/*/f:meta/f:versionId)) and not(exists(f:contained/*/f:meta/f:lastUpdated))" />
+      </constraint>
+      <constraint>
+        <key value="dom-3" />
+        <severity value="error" />
+        <human value="If the resource is contained in another resource, it SHALL be referred to from elsewhere in the resource" />
+        <expression value="contained.where(('#'+id in %resource.descendants().reference).not()).empty()" />
+        <xpath value="not(exists(for $id in f:contained/*/@id return $id[not(ancestor::f:contained/parent::*/descendant::f:reference/@value=concat('#', $id))]))" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="workflow.encounter" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.id">
+      <path value="EpisodeOfCare.id" />
+      <short value="Logical id of this artifact" />
+      <definition value="The logical id of the resource, as used in the URL for the resource. Once assigned, this value never changes." />
+      <comment value="The only time that a resource does not have an id is when it is being submitted to the server using a create operation." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="id" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.meta">
+      <path value="EpisodeOfCare.meta" />
+      <short value="Metadata about the resource" />
+      <definition value="The metadata about the resource. This is content that is maintained by the infrastructure. Changes to the content may not always be associated with version changes to the resource." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.meta" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Meta" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.implicitRules">
+      <path value="EpisodeOfCare.implicitRules" />
+      <short value="A set of rules under which this content was created" />
+      <definition value="A reference to a set of rules that were followed when the resource was constructed, and which must be understood when processing the content." />
+      <comment value="Asserting this rule set restricts the content to be only understood by a limited set of trading partners. This inherently limits the usefulness of the data in the long term. However, the existing health eco-system is highly fractured, and not yet ready to define, collect, and exchange data in a generally computable sense. Wherever possible, implementers and/or specification writers should avoid using this element. &#xA;&#xA;This element is labelled as a modifier because the implicit rules may provide additional knowledge about the resource that modifies it's meaning or interpretation." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.implicitRules" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="uri" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.language">
+      <path value="EpisodeOfCare.language" />
+      <short value="Language of the resource content" />
+      <definition value="The base language in which the resource is written." />
+      <comment value="Language is provided to support indexing and accessibility (typically, services such as text to speech use the language tag). The html language tag in the narrative applies  to the narrative. The language tag on the resource may be used to specify the language of other presentations generated from the data in the resource  Not all the content has to be in the base language. The Resource.language should not be assumed to apply to the narrative automatically. If a language is specified, it should it also be specified on the div element in the html (see rules in HTML5 for information about the relationship between xml:lang and the html lang attribute)." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Resource.language" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-maxValueSet">
+          <valueReference>
+            <reference value="http://hl7.org/fhir/ValueSet/all-languages" />
+          </valueReference>
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="Language" />
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true" />
+        </extension>
+        <strength value="extensible" />
+        <description value="A human language." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/languages" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.text">
+      <path value="EpisodeOfCare.text" />
+      <short value="Text summary of the resource, for human interpretation" />
+      <definition value="A human-readable narrative that contains a summary of the resource, and may be used to represent the content of the resource to a human. The narrative need not encode all the structured data, but is required to contain sufficient detail to make it &quot;clinically safe&quot; for a human to just read the narrative. Resource definitions may define what content should be represented in the narrative to ensure clinical safety." />
+      <comment value="Contained resources do not have narrative. Resources that are not contained SHOULD have a narrative. In some cases, a resource may only have text with little or no additional discrete data (as long as all minOccurs=1 elements are satisfied).  This may be necessary for data from legacy systems where information is captured as a &quot;text blob&quot; or where text is additionally entered raw or narrated and encoded in formation is added later." />
+      <alias value="narrative" />
+      <alias value="html" />
+      <alias value="xhtml" />
+      <alias value="display" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="DomainResource.text" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Narrative" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="dom-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="Act.text?" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.contained">
+      <path value="EpisodeOfCare.contained" />
+      <short value="Contained, inline Resources" />
+      <definition value="These resources do not have an independent existence apart from the resource that contains them - they cannot be identified independently, and nor can they have their own independent transaction scope." />
+      <comment value="This should never be done when the content can be identified properly, as once identification is lost, it is extremely difficult (and context dependent) to restore it again." />
+      <alias value="inline resources" />
+      <alias value="anonymous resources" />
+      <alias value="contained resources" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.contained" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Resource" />
+      </type>
+      <mapping>
+        <identity value="rim" />
+        <map value="Entity. Role, or Act" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.extension">
+      <path value="EpisodeOfCare.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.modifierExtension">
+      <path value="EpisodeOfCare.modifierExtension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the resource, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="DomainResource.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.identifier">
+      <path value="EpisodeOfCare.identifier" />
+      <short value="Business Identifier(s) relevant for this EpisodeOfCare" />
+      <definition value="The EpisodeOfCare may be known by different identifiers for different contexts of use, such as when an external agency is tracking the Episode for funding purposes." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="EpisodeOfCare.identifier" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Identifier" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CX / EI (occasionally, more often EI maps to a resource id or a URL)" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="II - see see identifier pattern at http://wiki.hl7.org/index.php?title=Common_Design_Patterns#Identifier_Pattern for relevant discussion. The Identifier class is a little looser than the v3 type II because it allows URIs as well as registered OIDs or GUIDs.  Also maps to Role[classCode=IDENT]" />
+      </mapping>
+      <mapping>
+        <identity value="servd" />
+        <map value="Identifier" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="id" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.status">
+      <path value="EpisodeOfCare.status" />
+      <short value="planned | waitlist | active | onhold | finished | cancelled | entered-in-error" />
+      <definition value="System assigned status &quot;active&quot; when EpisodeOfCare is created based on the Enrollment task. At this time, this will be the only status but other status will be used in future when there are specific business requirements to track the EpisodeOfCare state machine. " />
+      <comment value="This element is labeled as a modifier because the status contains codes that mark the episode as not currently valid." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.status" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="EpisodeOfCareStatus" />
+        </extension>
+        <strength value="required" />
+        <description value="The status of the episode of care." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/episode-of-care-status" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="status" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.statusHistory">
+      <path value="EpisodeOfCare.statusHistory" />
+      <short value="List of status codes (the current status may be included to cover the start date of the status)" />
+      <definition value="The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the resource). Status history may be useful but will be implemented at later time depending on specific business needs regarding how to use it. " />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="EpisodeOfCare.statusHistory" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.statusHistory.id">
+      <path value="EpisodeOfCare.statusHistory.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.statusHistory.extension">
+      <path value="EpisodeOfCare.statusHistory.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.statusHistory.modifierExtension">
+      <path value="EpisodeOfCare.statusHistory.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.statusHistory.status">
+      <path value="EpisodeOfCare.statusHistory.status" />
+      <short value="planned | waitlist | active | onhold | finished | cancelled | entered-in-error" />
+      <definition value="planned | waitlist | active | onhold | finished | cancelled." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.statusHistory.status" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="code" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="EpisodeOfCareStatus" />
+        </extension>
+        <strength value="required" />
+        <description value="The status of the episode of care." />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/episode-of-care-status" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.statusHistory.period">
+      <path value="EpisodeOfCare.statusHistory.period" />
+      <short value="Duration the EpisodeOfCare was in the specified status" />
+      <definition value="The period during this EpisodeOfCare that the specific status applied." />
+      <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.statusHistory.period" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Period" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower value than end" />
+        <expression value="start.empty() or end.empty() or (start &lt;= end)" />
+        <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="IVL&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;] or URG&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;]" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.type">
+      <path value="EpisodeOfCare.type" />
+      <short value="Type/class  - e.g. specialist referral, disease management" />
+      <definition value="A classification of the type of episode of care; e.g. specialist referral, disease management, type of funded care. System to populate &quot;hacc&quot; by default when created. " />
+      <comment value="The type can be very important in processing as this could be used in determining if the EpisodeOfCare is relevant to specific government reporting, or other types of classifications." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.type" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/CodeableConcept" />
+      </type>
+      <defaultValueCodeableConcept>
+        <coding>
+          <code value="hacc" />
+          <display value="Home and Community Care" />
+        </coding>
+      </defaultValueCodeableConcept>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="EpisodeOfCareType" />
+        </extension>
+        <strength value="example" />
+        <description value="The type of the episode of care" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/episodeofcare-type" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="class" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.diagnosis">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Diagnosis" />
+      </extension>
+      <path value="EpisodeOfCare.diagnosis" />
+      <short value="The list of diagnosis relevant to this episode of care" />
+      <definition value="The list of diagnosis relevant to this episode of care. Diagnosis may be useful but will be implemented at later time depending on specific business needs and where to get those. " />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="EpisodeOfCare.diagnosis" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="BackboneElement" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.diagnosis.id">
+      <path value="EpisodeOfCare.diagnosis.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.diagnosis.extension">
+      <path value="EpisodeOfCare.diagnosis.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.diagnosis.modifierExtension">
+      <path value="EpisodeOfCare.diagnosis.modifierExtension" />
+      <short value="Extensions that cannot be ignored" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element, and that modifies the understanding of the element that contains it. Usually modifier elements provide negation or qualification. In order to make the use of extensions safe and manageable, there is a strict set of governance applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension. Applications processing a resource are required to check for modifier extensions." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <alias value="modifiers" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="BackboneElement.modifierExtension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <isModifier value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.diagnosis.condition">
+      <path value="EpisodeOfCare.diagnosis.condition" />
+      <short value="Conditions/problems/diagnoses this episode of care is for" />
+      <definition value="A list of conditions/problems/diagnoses that this episode of care is intended to be providing care for." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.diagnosis.condition" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Reference" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="what" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.diagnosis.role">
+      <path value="EpisodeOfCare.diagnosis.role" />
+      <short value="Role that this diagnosis has within the episode of care (e.g. admission, billing, discharge …)" />
+      <definition value="Role that this diagnosis has within the episode of care (e.g. admission, billing, discharge …)." />
+      <comment value="Not all terminology uses fit this general pattern. In some cases, models should not use CodeableConcept and use Coding directly and provide their own structure for managing text, codings, translations and the relationship between elements and pre- and post-coordination." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.diagnosis.role" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="CodeableConcept" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <binding>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-bindingName">
+          <valueString value="DiagnosisRole" />
+        </extension>
+        <extension url="http://hl7.org/fhir/StructureDefinition/elementdefinition-isCommonBinding">
+          <valueBoolean value="true" />
+        </extension>
+        <strength value="preferred" />
+        <description value="The type of diagnosis this condition represents" />
+        <valueSetReference>
+          <reference value="http://hl7.org/fhir/ValueSet/diagnosis-role" />
+        </valueSetReference>
+      </binding>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="CE/CNE/CWE" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="CD" />
+      </mapping>
+      <mapping>
+        <identity value="orim" />
+        <map value="fhir:CodeableConcept rdfs:subClassOf dt:CD" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.diagnosis.rank">
+      <path value="EpisodeOfCare.diagnosis.rank" />
+      <short value="Ranking of the diagnosis (for each role type)" />
+      <definition value="Ranking of the diagnosis (for each role type)." />
+      <comment value="32 bit number; for values larger than this, use decimal" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.diagnosis.rank" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="positiveInt" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.patient">
+      <path value="EpisodeOfCare.patient" />
+      <short value="The patient who is the focus of this episode of care" />
+      <definition value="The patient who is the focus of this episode of care. System to populate reference to the current Patient context for which Enrollment task is active." />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.patient" />
+        <min value="1" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="who.focus" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.managingOrganization">
+      <path value="EpisodeOfCare.managingOrganization" />
+      <short value="Organization that assumes care" />
+      <definition value="The organization that has assumed the specific responsibilities for the specified duration. System to populate reference to the current organization context under which Enrollment task is active (generally user's organization but there should be current organization context since practitioner user may be linked to multiple organizations). " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.managingOrganization" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Organization" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.period">
+      <path value="EpisodeOfCare.period" />
+      <short value="Interval during responsibility is assumed" />
+      <definition value="The interval during which the managing organization assumes the defined responsibility." />
+      <comment value="This is not a duration - that's a measure of time (a separate type), but a duration that occurs at a fixed value of time. A Period specifies a range of time; the context of use will specify whether the entire range applies (e.g. &quot;the patient was an inpatient of the hospital for this time range&quot;) or one value from the range applies (e.g. &quot;give to the patient between these two times&quot;). If duration is required, specify the type as Interval|Duration." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.period" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Period" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="per-1" />
+        <severity value="error" />
+        <human value="If present, start SHALL have a lower value than end" />
+        <expression value="start.empty() or end.empty() or (start &lt;= end)" />
+        <xpath value="not(exists(f:start)) or not(exists(f:end)) or (f:start/@value &lt;= f:end/@value)" />
+      </constraint>
+      <mustSupport value="true" />
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="IVL&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;] or URG&lt;TS&gt;[lowClosed=&quot;true&quot; and highClosed=&quot;true&quot;]" />
+      </mapping>
+      <mapping>
+        <identity value="w5" />
+        <map value="when.init" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.period.id">
+      <path value="EpisodeOfCare.period.id" />
+      <representation value="xmlAttr" />
+      <short value="xml:id (or equivalent in JSON)" />
+      <definition value="unique id for the element within a resource (for internal references). This may be any string value that does not contain spaces." />
+      <comment value="Note that FHIR strings may not exceed 1MB in size" />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Element.id" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="string" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.period.extension">
+      <path value="EpisodeOfCare.period.extension" />
+      <slicing>
+        <discriminator>
+          <type value="value" />
+          <path value="url" />
+        </discriminator>
+        <description value="Extensions are always sliced by (at least) url" />
+        <rules value="open" />
+      </slicing>
+      <short value="Additional Content defined by implementations" />
+      <definition value="May be used to represent additional information that is not part of the basic definition of the element. In order to make the use of extensions safe and manageable, there is a strict set of governance  applied to the definition and use of extensions. Though any implementer is allowed to define an extension, there is a set of requirements that SHALL be met as part of the definition of the extension." />
+      <comment value="There can be no stigma associated with the use of extensions by any application, project, or standard - regardless of the institution or jurisdiction that uses or defines the extensions.  The use of extensions is what allows the FHIR specification to retain a core level of simplicity for everyone." />
+      <alias value="extensions" />
+      <alias value="user content" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="Element.extension" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Extension" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ext-1" />
+        <severity value="error" />
+        <human value="Must have either extensions or value[x], not both" />
+        <expression value="extension.exists() != value.exists()" />
+        <xpath value="exists(f:extension)!=exists(f:*[starts-with(local-name(.), 'value')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="N/A" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.period.start">
+      <path value="EpisodeOfCare.period.start" />
+      <short value="Starting time with inclusive boundary" />
+      <definition value="The start of the period. The boundary is inclusive. System populates start date when the Enrollment task is active." />
+      <comment value="If the low element is missing, the meaning is that the low boundary is not known." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Period.start" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <condition value="ele-1" />
+      <condition value="per-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.1" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./low" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.period.end">
+      <path value="EpisodeOfCare.period.end" />
+      <short value="End time with inclusive boundary, if not ongoing" />
+      <definition value="End date will not be used at this time but will be used when other status such as finished and cancelled are supported. &#xD;&#xA;The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time. " />
+      <comment value="The high value includes any matching date/time. i.e. 2012-02-03T10:00:00 is in a period that has a end value of 2012-02-03." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="Period.end" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="dateTime" />
+      </type>
+      <meaningWhenMissing value="If the end of the period is missing, it means that the period is ongoing" />
+      <condition value="ele-1" />
+      <condition value="per-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <isSummary value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="v2" />
+        <map value="DR.2" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="./high" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.referralRequest">
+      <path value="EpisodeOfCare.referralRequest" />
+      <short value="Originating Referral Request(s)" />
+      <definition value="Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming referrals.  Will not be used at this time but may be used in future when ReferralRequest is implemented. " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="0" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.referralRequest" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ReferralRequest" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.careManager">
+      <path value="EpisodeOfCare.careManager" />
+      <short value="Care manager/care co-ordinator for the patient" />
+      <definition value="The practitioner that is the care manager/care co-ordinator for this patient. System to populate reference to the Practitioner resource related to the current user context at the time of creating EpisodeOfCare based on when the Enrollment task is active. This will generally be care coordinator role but may also be care manager role. " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <min value="1" />
+      <max value="1" />
+      <base>
+        <path value="EpisodeOfCare.careManager" />
+        <min value="0" />
+        <max value="1" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-practitioner" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mustSupport value="true" />
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.team">
+      <path value="EpisodeOfCare.team" />
+      <short value="Other practitioners facilitating this episode of care" />
+      <definition value="The list of practitioners that may be facilitating this episode of care for specific purposes. Seems redudant to Care team so will not use it for now but there may be business needs at later. " />
+      <comment value="References SHALL be a reference to an actual FHIR resource, and SHALL be resolveable (allowing for access control, temporary unavailability, etc). Resolution can be either by retrieval from the URL, or, where applicable by resource type, by treating an absolute reference as a canonical URL and looking it up in a local registry/repository." />
+      <alias value="CareTeam" />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="EpisodeOfCare.team" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/CareTeam" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+    </element>
+    <element id="EpisodeOfCare.account">
+      <path value="EpisodeOfCare.account" />
+      <short value="The set of accounts that may be used for billing for this EpisodeOfCare" />
+      <definition value="The set of accounts that may be used for billing for this EpisodeOfCare." />
+      <comment value="The billing system may choose to allocate billable items associated with the EpisodeOfCare to different referenced Accounts based on internal business rules." />
+      <min value="0" />
+      <max value="*" />
+      <base>
+        <path value="EpisodeOfCare.account" />
+        <min value="0" />
+        <max value="*" />
+      </base>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Account" />
+      </type>
+      <condition value="ele-1" />
+      <constraint>
+        <key value="ele-1" />
+        <severity value="error" />
+        <human value="All FHIR elements must have a @value or children" />
+        <expression value="hasValue() | (children().count() &gt; id.count())" />
+        <xpath value="@value|f:*|h:div" />
+      </constraint>
+      <constraint>
+        <key value="ref-1" />
+        <severity value="error" />
+        <human value="SHALL have a contained resource if a local reference is provided" />
+        <expression value="reference.startsWith('#').not() or (reference.substring(1).trace('url') in %resource.contained.id.trace('ids'))" />
+        <xpath value="not(starts-with(f:reference/@value, '#')) or exists(ancestor::*[self::f:entry or self::f:parameter]/f:resource/f:*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')]|/*/f:contained/f:*[f:id/@value=substring-after(current()/f:reference/@value, '#')])" />
+      </constraint>
+      <mapping>
+        <identity value="rim" />
+        <map value="n/a" />
+      </mapping>
+      <mapping>
+        <identity value="rim" />
+        <map value="The target of a resource reference is a RIM entry point (Act, Role, or Entity)" />
+      </mapping>
+    </element>
+  </snapshot>
+  <differential>
+    <element id="EpisodeOfCare.status">
+      <path value="EpisodeOfCare.status" />
+      <definition value="System assigned status &quot;active&quot; when EpisodeOfCare is created based on the Enrollment task. At this time, this will be the only status but other status will be used in future when there are specific business requirements to track the EpisodeOfCare state machine. " />
+      <mustSupport value="true" />
+    </element>
+    <element id="EpisodeOfCare.statusHistory">
+      <path value="EpisodeOfCare.statusHistory" />
+      <short value="List of status codes (the current status may be included to cover the start date of the status)" />
+      <definition value="The history of statuses that the EpisodeOfCare has been through (without requiring processing the history of the resource). Status history may be useful but will be implemented at later time depending on specific business needs regarding how to use it. " />
+    </element>
+    <element id="EpisodeOfCare.type">
+      <path value="EpisodeOfCare.type" />
+      <definition value="A classification of the type of episode of care; e.g. specialist referral, disease management, type of funded care. System to populate &quot;hacc&quot; by default when created. " />
+      <min value="1" />
+      <max value="1" />
+      <type>
+        <code value="CodeableConcept" />
+        <profile value="http://hl7.org/fhir/StructureDefinition/CodeableConcept" />
+      </type>
+      <defaultValueCodeableConcept>
+        <coding>
+          <code value="hacc" />
+          <display value="Home and Community Care" />
+        </coding>
+      </defaultValueCodeableConcept>
+      <mustSupport value="true" />
+    </element>
+    <element id="EpisodeOfCare.diagnosis">
+      <extension url="http://hl7.org/fhir/StructureDefinition/structuredefinition-explicit-type-name">
+        <valueString value="Diagnosis" />
+      </extension>
+      <path value="EpisodeOfCare.diagnosis" />
+      <definition value="The list of diagnosis relevant to this episode of care. Diagnosis may be useful but will be implemented at later time depending on specific business needs and where to get those. " />
+    </element>
+    <element id="EpisodeOfCare.diagnosis.condition">
+      <path value="EpisodeOfCare.diagnosis.condition" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Reference" />
+      </type>
+    </element>
+    <element id="EpisodeOfCare.patient">
+      <path value="EpisodeOfCare.patient" />
+      <definition value="The patient who is the focus of this episode of care. System to populate reference to the current Patient context for which Enrollment task is active." />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/Patient" />
+      </type>
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-patient" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="EpisodeOfCare.managingOrganization">
+      <path value="EpisodeOfCare.managingOrganization" />
+      <definition value="The organization that has assumed the specific responsibilities for the specified duration. System to populate reference to the current organization context under which Enrollment task is active (generally user's organization but there should be current organization context since practitioner user may be linked to multiple organizations). " />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="EpisodeOfCare.period">
+      <path value="EpisodeOfCare.period" />
+      <min value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="EpisodeOfCare.period.start">
+      <path value="EpisodeOfCare.period.start" />
+      <definition value="The start of the period. The boundary is inclusive. System populates start date when the Enrollment task is active." />
+    </element>
+    <element id="EpisodeOfCare.period.end">
+      <path value="EpisodeOfCare.period.end" />
+      <definition value="End date will not be used at this time but will be used when other status such as finished and cancelled are supported. &#xD;&#xA;The end of the period. If the end of the period is missing, it means that the period is ongoing. The start may be in the past, and the end date in the future, which means that period is expected/planned to end at that time. " />
+    </element>
+    <element id="EpisodeOfCare.referralRequest">
+      <path value="EpisodeOfCare.referralRequest" />
+      <definition value="Referral Request(s) that are fulfilled by this EpisodeOfCare, incoming referrals.  Will not be used at this time but may be used in future when ReferralRequest is implemented. " />
+      <max value="1" />
+      <mustSupport value="true" />
+    </element>
+    <element id="EpisodeOfCare.careManager">
+      <path value="EpisodeOfCare.careManager" />
+      <definition value="The practitioner that is the care manager/care co-ordinator for this patient. System to populate reference to the Practitioner resource related to the current user context at the time of creating EpisodeOfCare based on when the Enrollment task is active. This will generally be care coordinator role but may also be care manager role. " />
+      <min value="1" />
+      <type>
+        <code value="Reference" />
+        <targetProfile value="http://hl7.org/fhir/StructureDefinition/ocp-practitioner" />
+      </type>
+      <mustSupport value="true" />
+    </element>
+    <element id="EpisodeOfCare.team">
+      <path value="EpisodeOfCare.team" />
+      <definition value="The list of practitioners that may be facilitating this episode of care for specific purposes. Seems redudant to Care team so will not use it for now but there may be business needs at later. " />
+    </element>
+  </differential>
+</StructureDefinition>

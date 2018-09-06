@@ -1,0 +1,84 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+ <id value="ocp-careteam-role"/>
+<meta>
+<versionId value="1"/>
+<lastUpdated value="2018-03-07T07:44:43.294+10:00"/>
+</meta> 
+<text>
+   <status value="generated"/>
+   <div xmlns="http://www.w3.org/1999/xhtml">
+      <h2> CareTeam roles contains Subset of NUCC Provider Directory Provider Roles (NUCC) and Administrator Role Codes </h2>
+      <div>
+         <p> This value set defines CareTeam roles (subset of provider specialty role codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes).</p>
+      </div>
+      <p> This CareTeam value set includes codes from the following code systems:</p>
+      <ul>
+         <li> Include subset of the NUCC codes defined in 
+            http://nucc.org/provider-taxonomy
+         </li>
+      </ul>
+      <h3> This value set defines CareTeam role codes, and roles (a subset of NUCC Provider Taxonomy Codes and Administrator Role Codes), and value sets may be updated later. </h3>
+      <p> Release Date: 2016-11-11</p>
+      <table class="grid">
+<tr> <td> <b><code>101Y00000X</code></b></td><td><b><display>Counselor</display></b></td></tr>
+<tr> <td> <b><code>101YA0400X</code></b></td><td><b><display>Addiction (Substance Use Disorder) Counselor</display></b></td></tr>
+<tr> <td> <b><code>101YM0800X</code></b></td><td><b><display>Mental Health Counselor</display></b></td></tr>
+<tr> <td> <b><code>103G00000X</code></b></td><td><b><display>Clinical Neuropsychologist</display></b></td></tr>
+<tr> <td> <b><code>103GC0700X</code></b></td><td><b><display>Clinical Clinical Neuropsychologist</display></b></td></tr>
+<tr> <td> <b><code>103K00000X</code></b></td><td><b><display>Behavioral Analyst</display></b></td></tr>
+<tr> <td> <b><code>103T00000X</code></b></td><td><b><display>Psychologist</display></b></td></tr>
+<tr> <td> <b><code>103TC1900X</code></b></td><td><b><display>Counseling Psychologist</display></b></td></tr>
+<tr> <td> <b><code>171M00000X</code></b></td><td><b><display>Case Manager/Care Coordinator</display></b></td></tr>
+<tr> <td> <b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr>
+<tr> <td> <b><code>103TB0200X</code></b></td><td><b><display>Cognitive &amp; Behavioral Psychologist</display></b></td></tr>
+<tr> <td> <b><code>2084B0040X</code></b></td><td><b><display>Behavioral Neurology &amp; Neuropsychiatry </display></b></td></tr>
+<tr> <td> <b><code>251S00000X</code></b></td><td><b><display>Community/Behavioral Health</display></b></td></tr>
+<tr> <td> <b><code>CAREMNGR</code></b></td><td><b><display>Care Manager</display></b></td></tr>  
+<tr> <td> <b><code>PCP</code></b></td><td><b><display>Primary Care Provider</display></b></td></tr>     
+<tr> <td> <b><code>RELPER</code></b></td><td><b><display>Related Person</display></b></td></tr>   
+ </table>
+   </div>
+</text>
+  <url value="http://hl7.org/fhir/ValueSet/ocp-careteam-role"/>
+     <version value="1.1.0"/> 
+	 <name value="Provider Taxonomy codes that indicates Provider Codes and Specialization with Classification and Administrator Role Codes"/> 
+  <status value="draft"/> 
+  <experimental value="true"/> 
+  <date value="2017-04-19T07:44:43+10:00"/> 
+  <publisher value="National Uniform Claim Committee(NUCC)"/>
+  <contact> 
+    <telecom> 
+      <system value="other"/> 
+      <value value="http://nucc.org/index.php/code-sets-mainmenu-41/provider-taxonomy-mainmenu-40/code-lookup-mainmenu-50"/> 
+    </telecom> 
+  </contact> 
+  <description value="Provider speciality roles codes which are composed of the NUCC Health Care Provider Taxonomy Code Set for providers and Administrator Role Codes"/> 
+  <jurisdiction>
+      <coding>
+         <system value="http://nucc.org/provider-taxonomy"/>
+         <code value="US"/>
+      </coding>
+   </jurisdiction>
+  <compose> 
+    <include> 
+      <system value="http://nucc.org/provider-taxonomy"/> 
+<concept><code value='101Y00000X'/><display value='Counselor'/> </concept>
+<concept><code value='101YA0400X'/><display value='Addiction (Substance Use Disorder) Counselor'/> </concept>
+<concept><code value='101YM0800X'/><display value='Mental Health Counselor'/> </concept>
+<concept><code value='103G00000X'/><display value='Clinical Neuropsychologist'/> </concept>
+<concept><code value='103GC0700X'/><display value='Clinical Clinical Neuropsychologist'/> </concept>
+<concept><code value='103K00000X'/><display value='Behavioral Analyst'/> </concept>
+<concept><code value='103T00000X'/><display value='Psychoanalyst'/> </concept>
+<concept><code value='103TC1900X'/><display value='Counseling Psychologist'/> </concept>
+<concept><code value='171M00000X'/><display value='Case Manager/Care Coordinator'/> </concept>
+<concept><code value='251S00000X'/><display value='Community/Behavioral Health'/> </concept>
+<concept><code value='103TB0200X'/><display value='Cognitive &amp; Behavioral Psychologist'/> </concept>
+<concept><code value='2084B0040X'/><display value='Behavioral Neurology &amp; Neuropsychiatry'/> </concept>
+<concept><code value='251S00000X'/><display value='Community/Behavioral Health'/> </concept>
+<concept><code value='CAREMNGR'/><display value='Care Manager'/> </concept>
+<concept><code value='PCP'/><display value='Primary Care Provider'/> </concept>
+<concept><code value='RELPER'/><display value='Related Person'/> </concept>
+
+ </include> 
+  </compose> 
+</ValueSet> 

@@ -1,0 +1,48 @@
+<ValueSet xmlns="http://hl7.org/fhir">
+ <id value="ocp-security-label"/>
+<meta>
+<versionId value="1"/>
+<lastUpdated value="2018-03-07T07:44:43.294+10:00"/>
+</meta> 
+<text>
+   <status value="generated"/>
+   <div xmlns="http://www.w3.org/1999/xhtml">
+      <h2>Below codes are subset of security label. Current C2S supports the below four codes for segmentation. </h2>
+        <p> This is a subset of v3 Act code value sets, and more value sets may be added later. This value set includes codes from the following code systems:</p>
+      <ul>
+         <li> Includes subset of the codes defined in 
+            http://hl7.org/fhir/v3/ActCode
+         </li>
+      </ul>
+       <table class="grid">
+<tr> <td> <b><code>ETH</code></b></td><td><b><display>substance abuse information sensitivity</display></b></td></tr>
+<tr> <td> <b><code>HIV</code></b></td><td><b><display>HIV/AIDS information sensitivity</display></b></td></tr>
+<tr> <td> <b><code>PSY</code></b></td><td><b><display>psychiatry information sensitivity</display></b></td></tr>
+<tr> <td> <b><code>SEX</code></b></td><td><b><display>sexuality and reproductive health information sensitivity</display></b></td></tr>
+ </table>
+   </div>
+</text>
+  <url value="http://hl7.org/fhir/ValueSet/ocp-security-label"/>
+     <version value="1.1.0"/> 
+	 <name value="v3 Actcodes"/> 
+  <status value="draft"/> 
+  <experimental value="true"/> 
+  <date value="2017-04-19T07:44:43+10:00"/> 
+  <publisher value="HL7"/>
+  <description value="A code specifying the particular kind of Act that the Act-instance represents within its class"/> 
+  <jurisdiction>
+      <coding>
+         <system value="http://hl7.org/fhir/v3/ActCode"/>
+         <code value="US"/>
+      </coding>
+   </jurisdiction>
+  <compose> 
+    <include> 
+      <system value="http://hl7.org/fhir/v3/ActCode"/> 
+<concept><code value='ETH'/><display value='substance abuse information sensitivity'/> </concept>
+<concept><code value='HIV'/><display value='HIV/AIDS information sensitivity'/> </concept>
+<concept><code value='PSY'/><display value='psychiatry information sensitivity'/> </concept>
+<concept><code value='SEX'/><display value='sexuality and reproductive health information sensitivity'/> </concept>
+ </include> 
+  </compose> 
+</ValueSet> 
