@@ -1,22 +1,22 @@
-version: '3'
+version: '2'
 services:
   ocp-config-server.ocp.com:
     image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-config-server:${OCP_CONFIG_SERVER_VERSION}
     volumes:
       - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-config-server:/java/OCP_LOGS/ocp-config-server
-      - ${OCP_BASE_PATH}/java/OCP_PROPS/ocp-config-data-private:/java/ocp-config-data-private
+      - ${OCP_BASE_PATH}/java/OCP_PROPS/ocp-config-data:/java/ocp-config-data
     environment:
-      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m 
-      spring.cloud.config.server.git.uri: file:/java/ocp-config-data-private
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
+      spring.cloud.config.server.git.uri: file:/java/ocp-config-data
     command: --spring.profiles.active=${ENV_APP_PROFILE}
     restart: always
-    
+
   ocp-discovery-server.ocp.com:
     image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-discovery-server:${OCP_DISCOVERY_SERVER_VERSION}
     volumes:
       - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-discovery-server:/java/OCP_LOGS/ocp-discovery-server
     environment:
-      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m 
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
     ports:
       - "8761:8761"
     command: --spring.profiles.active=${ENV_APP_PROFILE}
@@ -29,21 +29,21 @@ services:
     environment:
       JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
     ports:
-      - "80:80"      
+      - "80:80"
     command: --spring.profiles.active=${ENV_APP_PROFILE}
-    restart: always    
-    
+    restart: always
+
   ocp-fis.ocp.com:
     image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-fis:${OCP_FIS_VERSION}
     volumes:
       - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-fis:/java/OCP_LOGS/ocp-fis
     environment:
-      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m 
+      JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
     command: --spring.profiles.active=${ENV_APP_PROFILE}
     ports:
       - "8444:8444"
     restart: always
-    
+
   ocp-ui.ocp.com:
     image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-ui:${OCP_UI_VERSION}
     volumes:
@@ -52,13 +52,13 @@ services:
       JAVA_OPTS: -Xms512m -Xmx700m -Xss1m
       TZ: "US/Eastern"
     restart: always
-    
+
   ocp-ui-api.ocp.com:
     image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/ocp-ui-api:${OCP_UI_API_VERSION}
     volumes:
       - ${OCP_BASE_PATH}/java/OCP_LOGS/ocp-ui-api:/java/OCP_LOGS/ocp-ui-api
     environment:
-      JAVA_OPTS: -Xms512m -Xmx1024m -Xss1m 
+      JAVA_OPTS: -Xms512m -Xmx1024m -Xss1m
     command: --spring.profiles.active=${ENV_APP_PROFILE}
     restart: always
 
@@ -68,7 +68,7 @@ services:
       - ${OCP_BASE_PATH}/java/OCP_LOGS/smart-core:/java/OCP_LOGS/smart-core
     environment:
       JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
-    command: --spring.profiles.active=${ENV_APP_PROFILE} --eureka.client.service-url.defaultZone=http://ocp-discovery-server.ocp.com:8761/eureka/    
+    command: --spring.profiles.active=${ENV_APP_PROFILE} --eureka.client.service-url.defaultZone=http://ocp-discovery-server.ocp.com:8761/eureka/
     restart: always
     ports:
       - "8081:8445"
@@ -95,7 +95,7 @@ services:
       - ${OCP_BASE_PATH}/java/OCP_PROPS/ocp-config-data-private:/java/ocp-config-data-private
     environment:
       JAVA_OPTS: -Xms512m -Xmx2048m -Xss1m
-    command: --spring.profiles.active=${ENV_APP_PROFILE} --eureka.client.service-url.defaultZone=http://ocp-discovery-server.ocp.com:8761/eureka/ --c2s-sof-ui-config.launch-uri=https://ocpdemo.consent2share.org/c2s-sof-ui/launch --c2s-sof-ui-config.redirect-uri=https://ocpdemo.consent2share.org/c2s-sof-ui --c2s-sof-api.fhir.serverUrl=https://ocp.consent2share.org/fhir/baseDstu3
+    command: --spring.profiles.active=${ENV_APP_PROFILE} --eureka.client.service-url.defaultZone=http://ocp-discovery-server.ocp.com:8761/eureka/ --c2s-sof-ui-config.launch-uri=http://${C2S_SOF_HOST}/c2s-sof-ui/launch --c2s-sof-ui-config.redirect-uri=http://${C2S_SOF_HOST}/c2s-sof-ui --c2s-sof-api.fhir.serverUrl=http://fhir.ocp.com/fhir/baseDstu3
     restart: always
 
   c2s-sof-ui.ocp.com:
@@ -109,7 +109,7 @@ services:
       - "9001:9000"
 
   uaa.ocp.com:
-    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/uaa-ocp:${UAA_OCP_VERSION}
+    image: 141360335946.dkr.ecr.us-east-1.amazonaws.com/bhits/uaa-ocp:${OCP_UAA_VERSION}
     volumes:
       - ${UAA_BASE_PATH}/java/OCP_LOGS/uaa:/java/OCP_LOGS/uaa
       - ${UAA_BASE_PATH}/java/OCP_PROPS/uaa/uaa.yml:/java/OCP_PROPS/uaa/uaa.yml
@@ -126,11 +126,17 @@ services:
       UAA_SMTP_USER: ${UAA_SMTP_USER}
       UAA_SMTP_PASSWORD: ${UAA_SMTP_PASSWORD}
     ports:
-      - 80:8080
+      - 8090:8080
     restart: always
 
-  adminer.ocp.com:
-    image: adminer
-    restart: always
+  fhir.ocp.com:
+    image: bhits/hapi-fhir-jpaserver:3.4.0
+    environment:
+      TZ: "US/Eastern"
+      CATALINA_OPTS: -Din=jdbc:postgresql://${FHIR_DB_HOST}:${FHIR_DB_PORT}/fhir?autoReconnect=true -Dpd=${FHIR_DB_PASSWORD} -Xms512m -Xmx1024m -Xss1m
+    volumes:
+      - ${UAA_BASE_PATH}/java/OCP_PROPS/fhir/:/var/lib/tomcat8/webapps/fhir/
     ports:
-      - 8080:8080
+      - "8082:8080"
+    mem_limit: 1024m
+    restart: always

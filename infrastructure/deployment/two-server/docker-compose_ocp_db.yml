@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   fhir-db.c2s.com:
     image: postgres:10
@@ -6,8 +6,10 @@ services:
       TZ: "US/Eastern"
       POSTGRES_PASSWORD: ${FHIR_DB_PASSWORD}
       POSTGRES_DB: fhir
+    volumes:
+      - ${OCP_BASE_PATH}/java/data/fhir:/var/lib/postgresql/data
     ports:
-      - "5432:5432"
+      - "5433:5432"
     restart: always
 
   uaa-db.c2s.com:
@@ -16,6 +18,8 @@ services:
       TZ: "US/Eastern"
       POSTGRES_PASSWORD: ${UAA_DB_PASSWORD}
       POSTGRES_DB: uaa
+    volumes:
+      - ${OCP_BASE_PATH}/java/data/uaa:/var/lib/postgresql/data
     ports:
-      - "5433:5432"
+      - "5432:5432"
     restart: always

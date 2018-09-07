@@ -27,20 +27,22 @@ function defaultConfig() {
 
     # Edge Server configuraiton
     export OCP_APP_PORT=80
+
+    export C2S_SOF_HOST=your_c2s_sof_host
    }
 
 function OCPVersions(){
     export OCP_CONFIG_SERVER_VERSION=0.1.0
     export OCP_DISCOVERY_SERVER_VERSION=0.1.0
-    export OCP_EDGE_SERVER_VERSION=0.3.0
-    export OCP_FIS_VERSION=0.16.0
-    export OCP_UI_VERSION=0.16.0
-    export OCP_UI_API_VERSION=0.16.0
-    export SMART_CORE_VERSION=0.3.0
+    export OCP_EDGE_SERVER_VERSION=0.4.0
+    export OCP_FIS_VERSION=0.18.0
+    export OCP_UI_VERSION=0.18.0
+    export OCP_UI_API_VERSION=0.18.0
+    export SMART_CORE_VERSION=0.4.0
     export SMART_GATEWAY_VERSION=0.3.0
-    export C2S_SOF_API_VERSION=0.5.0
-    export C2S_SOF_UI_VERSION=0.5.0
-    export UAA_VERSION=4.8.0-08
+    export C2S_SOF_API_VERSION=0.6.0
+    export C2S_SOF_UI_VERSION=0.6.0
+    export OCP_UAA_VERSION=4.8.0-10
 }
 
 # Start Method
