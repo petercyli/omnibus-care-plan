@@ -1,0 +1,17 @@
+zuul:
+  routes:
+    ocp-ui:
+      path: /ocp-ui/**
+      sensitiveHeaders: ''
+      url: http://ocp-ui.ocp.com:3000/
+    _hmr:
+      path: /__webpack_hmr
+      sensitiveHeaders: ''
+      url: http://ocp-ui.ocp.com:3000/
+    c2s-sof-ui:
+      path: /c2s-sof-ui/**
+      url: http://c2s-sof-ui.ocp.com:9000/
+    c2s-sof-api:
+      path: /c2s-sof-api/**
+      sensitiveHeaders: Cookie,Set-Cookie
+      url: http://c2s-sof-api.ocp.com:8451/

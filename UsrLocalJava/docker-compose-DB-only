@@ -1,0 +1,26 @@
+version: '2'
+services:
+  fhir-db.ocp.com:
+    image: postgres:10
+    volumes:
+      - ${OCP_BASE_PATH}/java/data/fhir:/var/lib/postgresql/data
+    environment:
+      TZ: "US/Eastern"
+      POSTGRES_PASSWORD: ${FHIR_DB_PASSWORD}
+      POSTGRES_DB: fhir
+    ports:
+      - "5432:5432"
+    restart: always
+
+  uaa-db.ocp.com:
+    image: postgres:10
+    volumes:
+      - ${OCP_BASE_PATH}/java/data/uaa:/var/lib/postgresql/data
+    environment:
+      TZ: "US/Eastern"
+      POSTGRES_PASSWORD: ${UAA_DB_PASSWORD}
+      POSTGRES_DB: uaa
+    ports:
+      - "5433:5432"
+    restart: always
+

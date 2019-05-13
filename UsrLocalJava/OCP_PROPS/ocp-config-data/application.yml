@@ -1,0 +1,99 @@
+# Override default configurations or Add more configurations for OCP PROJECTS
+
+# Context path configuration for all OCP UI projects.
+ocp:
+  ocp-ui:
+    context-path: ocp-ui
+---
+spring.profiles: eureka-client
+# propagate application status to Eureka
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+---
+spring.profiles: oauth2-resource-default
+security:
+  basic:
+    enabled: false
+  oauth2:
+    resource:
+      # If SSL is turned on in the UAA application, you must change/override the 'user-info-uri' property below
+      #   to use 'https://' instead of 'http://'. You must also change/override the port number in the URL.
+      user-info-uri: http://localhost:8080/uaa/userinfo
+      jwt:
+        keyValue:
+                         -----BEGIN PUBLIC KEY-----
+                         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0m59l2u9iDnMbrXHfqkO
+                         rn2dVQ3vfBJqcDuFUK03d+1PZGbVlNCqnkpIJ8syFppW8ljnWweP7+LiWpRoz0I7
+                         fYb3d8TjhV86Y997Fl4DBrxgM6KTJOuE/uxnoDhZQ14LgOU2ckXjOzOdTsnGMKQB
+                         LCl0vpcXBtFLMaSbpv1ozi8h7DJyVZ6EnFQZUWGdgTMhDrmqevfx95U/16c5WBDO
+                         kqwIn7Glry9n9Suxygbf8g5AzpWcusZgDLIIZ7JTUldBb8qU2a0Dl4mvLZOn4wPo
+                         jfj9Cw2QICsc5+Pwf21fP+hzf+1WSRHbnYv8uanRO0gZ8ekGaghM/2H6gqJbo2nI
+                         JwIDAQAB
+                         -----END PUBLIC KEY-----
+---
+spring.profiles: mysql
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    validation-query: select 1
+    test-on-borrow: true
+    test-on-return: true
+    test-while-idle: true
+    time-between-eviction-runs-millis: 1800000
+    num-tests-per-eviction-run: 3
+    min-evictable-idle-time-millis: 1800000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        hbm2ddl:
+          auto: validate
+    hibernate:
+      ddl-auto: none
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    show-sql: false
+---
+c2s-sof-ui-config:
+  grant-type: authorization_code
+  client-id: c2s_sof_app
+  launch-uri: http://ocp-apps-elb-811293208.us-east-2.elb.amazonaws.com:9000/c2s-sof-ui/launch
+  redirect-uri: http://ocp-apps-elb-811293208.us-east-2.elb.amazonaws.com:9000/c2s-sof-ui
+  scope: patient/Patient.read patient/Consent.* launch launch/patient openid profile user/Organization.read user/Practitioner.read user/PractitionerRole.read user/StructureDefinition.read user/Provenance.write patient/CareTeam.read user/ValueSet.read $expand
+c2s-sof-api:
+  fhir:
+    clientSocketTimeoutInMs: 768000
+    encoding: json
+    defaultResourceBundlePageSize: 10
+  ResourceSinglePageLimit: 100
+  consent:
+    identifier-system: https://bhits.github.io/consent2share/
+    pagination:
+      default-size: 20
+  practitioner:
+    pagination:
+      default-size: 20
+  organization:
+    pagination:
+      default-size: 20
+  patient:
+    pagination:
+      default-size: 20
+    mrn:
+      codeSystem: https://bhits.github.io/consent2share
+      codeSystemOID: 2.16.840.1.113883.3.468.2
+      displayName: MRN/EID
+      prefix: OCP-DEV
+      length: 10
+  pdf:
+    pdfConfigs:
+      - type: consent-pdf
+        title: Consent to Share My Health Information
+        pdFont: TIMES_ROMAN
+        pdfPageSize: LETTER
+      - type: consent-revocation-pdf
+        title: Revocation of Consent to Share My Health Information
+        pdFont: TIMES_ROMAN
+        pdfPageSize: LETTER
+  provenanceEnabled: true

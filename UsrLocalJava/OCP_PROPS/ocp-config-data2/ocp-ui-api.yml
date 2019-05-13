@@ -1,0 +1,12 @@
+# Override default configurations or Add more configurations for OCP-UI-API
+security:
+  oauth2:
+    client:
+      access-token-uri: http://${UAA_PUBLIC_IP:172.31.24.173}:${UAA_PUBLIC_PORT:8090}/uaa/oauth/token
+ocp:
+  ocp-ui-api:
+    oauth2:
+      authorization-server-endpoint: http://${UAA_PUBLIC_IP:172.31.24.173}:${UAA_PUBLIC_PORT:8090}/uaa
+    is-show-sample-user-login-details: true
+    sample-file-for-login-details:
+      file-name: sample-qa-user-login-details.pdf

@@ -1,0 +1,9 @@
+# Override default configurations or Add more configurations for OCP-FIS API
+security:
+  oauth2:
+    client:
+      accessTokenUri: http://uaa.ocp.com/uaa/oauth/token
+ocp-fis:
+  fhir:
+    serverUrl: http://fhir.ocp.com:8080/fhir/baseDstu3
+    serverSecurityEnabled: false

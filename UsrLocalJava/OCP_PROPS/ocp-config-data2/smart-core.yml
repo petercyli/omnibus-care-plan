@@ -1,0 +1,16 @@
+spring:
+  redis:
+    host: redis.ocp.com                                                              # should match host/ip of redis
+smart-core:
+  context-initializer: http://${OCP_UI_PUBLIC_IP:172.31.24.173}/ocp-ui/smart-context     # should map to ocp-ui’s external endpoint
+  oauth2: http://${UAA_PUBLIC_IP:172.31.24.173}:${UAA_PUBLIC_PORT:8090}/uaa              # should map to uaa’s external base url
+  oauth2-authorize: ${smart-core.oauth2}/oauth/authorize     # not sure if you need to include these, but you may need. Don’t change the value if included
+  oauth2-token: ${smart-core.oauth2}/oauth/token              # not sure if you need to include these, but you may need. Don’t change the value if included
+  public-client-secret: changeit                           # this can be anything, but if changed let me know
+  fhir: http://${FHIR_PUBLIC_IP:172.31.24.173}:${FHIR_PUBLIC_PORT:8082}/fhir/baseDstu3   # should map to fhir server external endpoint
+security:
+  oauth2:
+    client:
+      client-id: smart-core
+      client-secret: changeit                         # should match with smart-core secret in uaa
+      access-token-uri: ${smart-core.oauth2-token}

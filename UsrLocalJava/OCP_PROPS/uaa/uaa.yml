@@ -1,0 +1,595 @@
+# OCP project is not using SAML authentication, but SAML Service Provider Configuration is required for proper start-up and functioning of UAA.
+#
+# The following properties MUST BE changed/override if using SAML:
+#   serviceProviderKey:
+#   serviceProviderKeyPassword:
+#   serviceProviderCertificate:
+login:
+  # BEGIN SAML CONFIGURATION
+  serviceProviderKey: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIICXQIBAAKBgQDHtC5gUXxBKpEqZTLkNvFwNGnNIkggNOwOQVNbpO0WVHIivig5
+    L39WqS9u0hnA+O7MCA/KlrAR4bXaeVVhwfUPYBKIpaaTWFQR5cTR1UFZJL/OF9vA
+    fpOwznoD66DDCnQVpbCjtDYWX+x6imxn8HCYxhMol6ZnTbSsFW6VZjFMjQIDAQAB
+    AoGAVOj2Yvuigi6wJD99AO2fgF64sYCm/BKkX3dFEw0vxTPIh58kiRP554Xt5ges
+    7ZCqL9QpqrChUikO4kJ+nB8Uq2AvaZHbpCEUmbip06IlgdA440o0r0CPo1mgNxGu
+    lhiWRN43Lruzfh9qKPhleg2dvyFGQxy5Gk6KW/t8IS4x4r0CQQD/dceBA+Ndj3Xp
+    ubHfxqNz4GTOxndc/AXAowPGpge2zpgIc7f50t8OHhG6XhsfJ0wyQEEvodDhZPYX
+    kKBnXNHzAkEAyCA76vAwuxqAd3MObhiebniAU3SnPf2u4fdL1EOm92dyFs1JxyyL
+    gu/DsjPjx6tRtn4YAalxCzmAMXFSb1qHfwJBAM3qx3z0gGKbUEWtPHcP7BNsrnWK
+    vw6By7VC8bk/ffpaP2yYspS66Le9fzbFwoDzMVVUO/dELVZyBnhqSRHoXQcCQQCe
+    A2WL8S5o7Vn19rC0GVgu3ZJlUrwiZEVLQdlrticFPXaFrn3Md82ICww3jmURaKHS
+    N+l4lnMda79eSp3OMmq9AkA0p79BvYsLshUJJnvbk76pCjR28PK4dV1gSDUEqQMB
+    qy45ptdwJLqLJCeNoR0JUcDNIRhOCuOPND7pcMtX6hI/
+    -----END RSA PRIVATE KEY-----
+  serviceProviderKeyPassword: password
+  serviceProviderCertificate: |
+    -----BEGIN CERTIFICATE-----
+    MIIDSTCCArKgAwIBAgIBADANBgkqhkiG9w0BAQQFADB8MQswCQYDVQQGEwJhdzEO
+    MAwGA1UECBMFYXJ1YmExDjAMBgNVBAoTBWFydWJhMQ4wDAYDVQQHEwVhcnViYTEO
+    MAwGA1UECxMFYXJ1YmExDjAMBgNVBAMTBWFydWJhMR0wGwYJKoZIhvcNAQkBFg5h
+    cnViYUBhcnViYS5hcjAeFw0xNTExMjAyMjI2MjdaFw0xNjExMTkyMjI2MjdaMHwx
+    CzAJBgNVBAYTAmF3MQ4wDAYDVQQIEwVhcnViYTEOMAwGA1UEChMFYXJ1YmExDjAM
+    BgNVBAcTBWFydWJhMQ4wDAYDVQQLEwVhcnViYTEOMAwGA1UEAxMFYXJ1YmExHTAb
+    BgkqhkiG9w0BCQEWDmFydWJhQGFydWJhLmFyMIGfMA0GCSqGSIb3DQEBAQUAA4GN
+    ADCBiQKBgQDHtC5gUXxBKpEqZTLkNvFwNGnNIkggNOwOQVNbpO0WVHIivig5L39W
+    qS9u0hnA+O7MCA/KlrAR4bXaeVVhwfUPYBKIpaaTWFQR5cTR1UFZJL/OF9vAfpOw
+    znoD66DDCnQVpbCjtDYWX+x6imxn8HCYxhMol6ZnTbSsFW6VZjFMjQIDAQABo4Ha
+    MIHXMB0GA1UdDgQWBBTx0lDzjH/iOBnOSQaSEWQLx1syGDCBpwYDVR0jBIGfMIGc
+    gBTx0lDzjH/iOBnOSQaSEWQLx1syGKGBgKR+MHwxCzAJBgNVBAYTAmF3MQ4wDAYD
+    VQQIEwVhcnViYTEOMAwGA1UEChMFYXJ1YmExDjAMBgNVBAcTBWFydWJhMQ4wDAYD
+    VQQLEwVhcnViYTEOMAwGA1UEAxMFYXJ1YmExHTAbBgkqhkiG9w0BCQEWDmFydWJh
+    QGFydWJhLmFyggEAMAwGA1UdEwQFMAMBAf8wDQYJKoZIhvcNAQEEBQADgYEAYvBJ
+    0HOZbbHClXmGUjGs+GS+xC1FO/am2suCSYqNB9dyMXfOWiJ1+TLJk+o/YZt8vuxC
+    KdcZYgl4l/L6PxJ982SRhc83ZW2dkAZI4M0/Ud3oePe84k8jm3A7EvH5wi5hvCkK
+    RpuRBwn3Ei+jCRouxTbzKPsuCVB+1sNyxMTXzf0=
+    -----END CERTIFICATE-----
+  # END SAML CONFIGURATION
+
+  authorize:
+    url: http://${UAA_PUBLIC_HOST:localhost}:${UAA_PUBLIC_PORT:8080}/uaa/oauth/authorize
+
+# Configure to enable to limit login failure attempts
+authentication:
+  policy:
+    lockoutAfterFailures: 5
+    countFailuresWithinSeconds: 3600
+    lockoutPeriodSeconds: 600
+# Patient User will use the e-mail server configured in this section to send e-mails
+# Please configure valid e-mail server below to connect to SMTP server
+# Configure host, port, username and password per environment
+smtp:
+  host: ${UAA_SMTP_HOST}
+  port: ${UAA_SMTP_PORT}
+  user: ${UAA_SMTP_USER}
+  password: ${UAA_SMTP_PASSWORD}
+  javaMailProperties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+        ssl:
+          trust: ${UAA_SMTP_HOST}
+      debug: true
+spring_profiles: postgresql
+database:
+  driverClassName: org.postgresql.Driver
+  url: jdbc:postgresql://${UAA_DB_HOST:localhost}:${UAA_DB_PORT:5432}/uaa
+  username: ${UAA_DB_USER:postgres}
+  password: ${UAA_DB_PASSWORD:}
+uaa:
+  url: http://${UAA_PUBLIC_HOST:localhost}:${UAA_PUBLIC_PORT:8080}/uaa
+  token:
+    url: http://${UAA_PUBLIC_HOST:localhost}:${UAA_PUBLIC_PORT:8080}/uaa/oauth/token
+  approvals:
+    url: http://${UAA_PUBLIC_HOST:localhost}:${UAA_PUBLIC_PORT:8080}/uaa/approvals
+  login:
+    url: http://${UAA_PUBLIC_HOST:localhost}:${UAA_PUBLIC_PORT:8080}/uaa/authenticate
+oauth:
+  clients:
+    ocp-ui:
+      authorized-grant-types: password
+      secret: changeit
+      scope: ocpUi.access,ocpUiApi.*,ocp.role.organization.*.*,ocp.role.*,ocpSmart.*,password.write
+      authorities: uaa.resource
+    ocp-fis:
+      authorized-grant-types: client_credentials
+      secret: changeit
+      scope: uaa.none,
+      authorities: user/*.*,patient/Patient.*,$expand
+    admin-client:
+      authorized-grant-types: password
+      secret: changeit
+      scope: openid,uaa.admin,scim.write,groups.update,zones.uaa.admin
+      authorities: uaa.resource
+    smart-core:
+      authorized-grant-types: client_credentials
+      secret: changeit
+      scope: uaa.none
+      authorities: clients.admin
+    ocp-ui-api:
+      authorized-grant-types: client_credentials
+      secret: changeit
+      scope: uaa.none
+      authorities: scim.write,scim.read,openid,password.write
+smart:
+#  launch-context-uri: http://${SMART_LAUNCH_HOST:localhost}:${SMART_LAUNCH_PORT:8445}/launch/{launch}?user={user}
+  launch-context-uri: http://smart-core.ocp.com:8445/launch/{launch}?user={user}
+logout:
+  redirect:
+    parameter:
+      whitelist:
+        - http://localhost:3000/
+#        - http://${UAA_REDIRECT_UI:localhost}/ocp-ui/
+        - http://${HOST_IP:localhost}/ocp-ui/
+scim:
+  groups:
+    ocpUi.access: Access OCP UI
+
+    ocpUiApi.activityDefinition_create: Create a ActivityDefinition
+    ocpUiApi.activityDefinition_read: Read a specific/restricted ActivityDefinition
+    ocpUiApi.activityDefinition_update: Update a ActivityDefinition
+    ocpUiApi.activityDefinition_delete: Delete a ActivityDefinition
+
+    ocpUiApi.appointment_create: Create an Appointment
+    ocpUiApi.appointment_read: Read a specific/restricted Appointment
+    ocpUiApi.appointment_update: Update an Appointment
+    ocpUiApi.appointment_delete: Delete an Appointment
+
+    ocpUiApi.careTeam_create: Create a CareTeam
+    ocpUiApi.careTeam_read: Read a specific/restricted CareTeam
+    ocpUiApi.careTeam_update: Update a CareTeam
+    ocpUiApi.careTeam_delete: Delete a CareTeam
+
+    ocpUiApi.communication_create: Create a Communication
+    ocpUiApi.communication_read: Read a specific/restricted Communication
+    ocpUiApi.communication_update: Update a Communication
+    ocpUiApi.communication_delete: Delete a Communication
+
+    ocpUiApi.consent_create: Create a Consent
+    ocpUiApi.consent_read: Read a specific/restricted Consent
+    ocpUiApi.consent_update: Update a Consent
+    ocpUiApi.consent_delete: Delete a Consent
+
+    ocpUiApi.healthcareService_create: Create a HealthCareService
+    ocpUiApi.healthcareService_read: Read a specific/restricted HealthCareService
+    ocpUiApi.healthcareService_assign: Assign a HealthCareService to an Organization
+    ocpUiApi.healthcareService_unassign: Un-Assign a HealthCareService from an Organization
+    ocpUiApi.healthcareService_update: Update a HealthCareService
+    ocpUiApi.healthcareService_delete: Delete a HealthCareService
+
+    ocpUiApi.location_create: Create a Location
+    ocpUiApi.location_read: Read a specific/restricted Location
+    ocpUiApi.location_update: Update a Location
+    ocpUiApi.location_delete: Delete a Location
+
+    ocpUiApi.organization_create: Create an Organization
+    ocpUiApi.organization_read: Read a specific/restricted Organization
+    ocpUiApi.organization_update: Update an Organization
+    ocpUiApi.organization_delete: Delete an Organization
+
+    ocpUiApi.patient_create: Create a Patient
+    ocpUiApi.patient_read: Read a specific/restricted Patient
+    ocpUiApi.patient_update: Update a Patient
+    ocpUiApi.patient_delete: Delete a Patient
+
+    ocpUiApi.practitioner_create: Create a Practitioner
+    ocpUiApi.practitioner_read: Read a specific/restricted Practitioner
+    ocpUiApi.practitioner_update: Update a Practitioner
+    ocpUiApi.practitioner_delete: Delete a Practitioner
+
+    ocpUiApi.relatedPerson_create: Create a RelatedPerson
+    ocpUiApi.relatedPerson_read: Read a specific/restricted RelatedPerson
+    ocpUiApi.relatedPerson_update: Update a RelatedPerson
+    ocpUiApi.relatedPerson_delete: Delete a RelatedPerson
+
+    ocpUiApi.task_create: Create a Task
+    ocpUiApi.task_read: Read a specific/restricted Task
+    ocpUiApi.task_update: Update a Task
+    ocpUiApi.task_delete: Delete a Task
+
+    ocpUiApi.group_create: Create a UAA group
+    ocpUiApi.group_read: Read a UAA group
+    ocpUiApi.group_update: Update a UAA group
+    ocpUiApi.group_delete: Delete a UAA group
+
+    ocpUiApi.user_create: Create a UAA user
+    ocpUiApi.user_read: Read a UAA user
+    ocpUiApi.user_update: Update a UAA user
+    ocpUiApi.user_delete: Delete a UAA user
+
+    #OCP SMART-GATEWAY Scopes
+    ocpSmart.client_read: Read SMART On FHIR app
+    ocpSmart.client_create: Create SMART On FHIR app
+    ocpSmart.client_update: Update SMART On FHIR app
+    ocpSmart.client_delete: Delete SMART On FHIR app
+
+    #Quippe scopes to launch Quippe Smart On Fhir app
+    Quippe: Quippe
+    QuippeClinician: Quippe Clinician
+    QuippeLibraryManager: Quippe Library Manager
+
+    # SMART on FHIR misc scopes
+    $expand: Read ValueSet expansion data you have access to in the system
+
+    # SMART on FHIR - FHIR launch scopes which are utilized by SMART on FHIR App
+    launch: The current selections in OCP system (e.g., organization, patient...etc.)
+    launch/patient: The current patient selection
+    launch/organization: The current organization selection
+    launch/location: The current location selection
+    launch/encounter: The current encounter selection
+    launch/resource: The current resource selection
+
+    # SMART on FHIR - Patient Scoped FHIR Resource scopes which are utilized by SMART on FHIR App
+    # Administration
+    patient/Patient.read: Read Patient data on the current patient
+    patient/Patient.write: Write Patient data on the current patient
+
+    patient/RelatedPerson.read: Read RelatedPerson data on the current patient
+    patient/RelatedPerson.write: Write RelatedPerson data on the current patient
+
+    patient/EpisodeOfCare.read: Read EpisodeOfCare data on the current patient
+    patient/EpisodeOfCare.write: Write EpisodeOfCare data on the current patient
+
+    patient/Coverage.read: Read Coverage data on the current patient
+    patient/Coverage.write: Write Coverage data on the current patient
+
+    # Workflow
+    patient/Communication.read: Read Communication data on the current patient
+    patient/Communication.write: Write Communication data on the current patient
+
+    patient/Flag.read: Read Flag data on the current patient
+    patient/Flag.write: Write Flag data on the current patient
+
+    patient/ActivityDefinition.read: Read ActivityDefinition data on the current patient
+    patient/ActivityDefinition.write: Write ActivityDefinition data on the current patient
+
+    patient/Task.read: Read Task data on the current patient
+    patient/Task.write: Write Task data on the current patient
+
+    patient/Appointment.read: Read Appointment data on the current patient
+    patient/Appointment.write: Write Appointment data on the current patient
+
+    # Clinical
+    patient/AllergyIntolerance.read: Read AllergyIntolerance data on the current patient
+    patient/AllergyIntolerance.write: Write AllergyIntolerance data on the current patient
+
+    patient/Condition.read: Read Condition data on the current patient
+    patient/Condition.write: Write Condition data on the current patient
+
+    patient/Procedure.read: Read Procedure data on the current patient
+    patient/Procedure.write: Write Procedure data on the current patient
+
+    patient/ClinicalImpression.read: Read ClinicalImpression data on the current patient
+    patient/ClinicalImpression.write: Write ClinicalImpression data on the current patient
+
+    patient/Observation.read: Read Observation data on the current patient
+    patient/Observation.write: Write Observation data on the current patient
+
+    patient/Specimen.read: Read Specimen data on the current patient
+    patient/Specimen.write: Write Specimen data on the current patient
+
+    patient/DiagnosticReport.read: Read DiagnosticReport data on the current patient
+    patient/DiagnosticReport.write: Write DiagnosticReport data on the current patient
+
+    patient/Medication.read: Read Medication data on the current patient
+    patient/Medication.write: Write Medication data on the current patient
+
+    patient/MedicationRequest.read: Read MedicationRequest data on the current patient
+    patient/MedicationRequest.write: Write MedicationRequest data on the current patient
+
+    patient/MedicationDispense.read: Read MedicationDispense data on the current patient
+    patient/MedicationDispense.write: Write MedicationDispense data on the current patient
+
+    patient/MedicationStatement.read: Read MedicationStatement data on the current patient
+    patient/MedicationStatement.write: Write MedicationStatement data on the current patient
+
+    # Care Provision
+    patient/CareTeam.read: Read CareTeam data on the current patient
+    patient/CareTeam.write: Write CareTeam data on the current patient
+
+    patient/CarePlan.read: Read CarePlan data on the current patient
+    patient/CarePlan.write: Write CarePlan data on the current patient
+
+    patient/Goal.read: Read Goal data on the current patient
+    patient/Goal.write: Write Goal data on the current patient
+
+    patient/ReferralRequest.read: Read ReferralRequest data on the current patient
+    patient/ReferralRequest.write: Write ReferralRequest data on the current patient
+
+    patient/ProcedureRequest.read: Read ProcedureRequest data on the current patient
+    patient/ProcedureRequest.write: Write ProcedureRequest data on the current patient
+
+    # Security and Privacy
+    patient/AuditEvent.read: Read AuditEvent data on the current patient
+    patient/AuditEvent.write: Write AuditEvent data on the current patient
+
+    patient/Consent.read: Read Consent data on the current patient
+    patient/Consent.write: Write Consent data on the current patient
+
+    patient/Provenance.read: Read Provenance data on the current patient
+    patient/Provenance.write: Write Provenance data on the current patient
+
+    # SMART on FHIR - User Scoped FHIR Resource scopes which are utilized by SMART on FHIR App
+    user/Account.read: Read Account data you have access to in the system
+    user/Account.write: Write Account data you have access to in the system
+    user/ActivityDefinition.read: Read ActivityDefinition data you have access to in the system
+    user/ActivityDefinition.write: Write ActivityDefinition data you have access to in the system
+    user/AdverseEvent.read: Read AdverseEvent data you have access to in the system
+    user/AdverseEvent.write: Write AdverseEvent data you have access to in the system
+    user/AllergyIntolerance.read: Read AllergyIntolerance data you have access to in the system
+    user/AllergyIntolerance.write: Write AllergyIntolerance data you have access to in the system
+    user/Appointment.read: Read Appointment data you have access to in the system
+    user/Appointment.write: Write Appointment data you have access to in the system
+    user/AppointmentResponse.read: Read AppointmentResponse data you have access to in the system
+    user/AppointmentResponse.write: Write AppointmentResponse data you have access to in the system
+    user/AuditEvent.read: Read AuditEvent data you have access to in the system
+    user/AuditEvent.write: Write AuditEvent data you have access to in the system
+    user/Basic.read: Read Basic data you have access to in the system
+    user/Basic.write: Write Basic data you have access to in the system
+    user/Binary.read: Read Binary data you have access to in the system
+    user/Binary.write: Write Binary data you have access to in the system
+    user/BodySite.read: Read BodySite data you have access to in the system
+    user/BodySite.write: Write BodySite data you have access to in the system
+    user/Bundle.read: Read Bundle data you have access to in the system
+    user/Bundle.write: Write Bundle data you have access to in the system
+    user/CapabilityStatement.read: Read CapabilityStatement data you have access to in the system
+    user/CapabilityStatement.write: Write CapabilityStatement data you have access to in the system
+    user/CarePlan.read: Read CarePlan data you have access to in the system
+    user/CarePlan.write: Write CarePlan data you have access to in the system
+    user/CareTeam.read: Read CareTeam data you have access to in the system
+    user/CareTeam.write: Write CareTeam data you have access to in the system
+    user/ChargeItem.read: Read ChargeItem data you have access to in the system
+    user/ChargeItem.write: Write ChargeItem data you have access to in the system
+    user/Claim.read: Read Claim data you have access to in the system
+    user/Claim.write: Write Claim data you have access to in the system
+    user/ClaimResponse.read: Read ClaimResponse data you have access to in the system
+    user/ClaimResponse.write: Write ClaimResponse data you have access to in the system
+    user/ClinicalImpression.read: Read ClinicalImpression data you have access to in the system
+    user/ClinicalImpression.write: Write ClinicalImpression data you have access to in the system
+    user/CodeSystem.read: Read CodeSystem data you have access to in the system
+    user/CodeSystem.write: Write CodeSystem data you have access to in the system
+    user/Communication.read: Read Communication data you have access to in the system
+    user/Communication.write: Write Communication data you have access to in the system
+    user/CommunicationRequest.read: Read CommunicationRequest data you have access to in the system
+    user/CommunicationRequest.write: Write CommunicationRequest data you have access to in the system
+    user/CompartmentDefinition.read: Read CompartmentDefinition data you have access to in the system
+    user/CompartmentDefinition.write: Write CompartmentDefinition data you have access to in the system
+    user/Composition.read: Read Composition data you have access to in the system
+    user/Composition.write: Write Composition data you have access to in the system
+    user/ConceptMap.read: Read ConceptMap data you have access to in the system
+    user/ConceptMap.write: Write ConceptMap data you have access to in the system
+    user/Condition.read: Read Condition data you have access to in the system
+    user/Condition.write: Write Condition data you have access to in the system
+    user/Consent.read: Read Consent data you have access to in the system
+    user/Consent.write: Write Consent data you have access to in the system
+    user/Contract.read: Read Contract data you have access to in the system
+    user/Contract.write: Write Contract data you have access to in the system
+    user/Coverage.read: Read Coverage data you have access to in the system
+    user/Coverage.write: Write Coverage data you have access to in the system
+    user/DataElement.read: Read DataElement data you have access to in the system
+    user/DataElement.write: Write DataElement data you have access to in the system
+    user/DetectedIssue.read: Read DetectedIssue data you have access to in the system
+    user/DetectedIssue.write: Write DetectedIssue data you have access to in the system
+    user/Device.read: Read Device data you have access to in the system
+    user/Device.write: Write Device data you have access to in the system
+    user/DeviceComponent.read: Read DeviceComponent data you have access to in the system
+    user/DeviceComponent.write: Write DeviceComponent data you have access to in the system
+    user/DeviceMetric.read: Read DeviceMetric data you have access to in the system
+    user/DeviceMetric.write: Write DeviceMetric data you have access to in the system
+    user/DeviceRequest.read: Read DeviceRequest data you have access to in the system
+    user/DeviceRequest.write: Write DeviceRequest data you have access to in the system
+    user/DeviceUseStatement.read: Read DeviceUseStatement data you have access to in the system
+    user/DeviceUseStatement.write: Write DeviceUseStatement data you have access to in the system
+    user/DiagnosticReport.read: Read DiagnosticReport data you have access to in the system
+    user/DiagnosticReport.write: Write DiagnosticReport data you have access to in the system
+    user/DocumentManifest.read: Read DocumentManifest data you have access to in the system
+    user/DocumentManifest.write: Write DocumentManifest data you have access to in the system
+    user/DocumentReference.read: Read DocumentReference data you have access to in the system
+    user/DocumentReference.write: Write DocumentReference data you have access to in the system
+    user/EligibilityRequest.read: Read EligibilityRequest data you have access to in the system
+    user/EligibilityRequest.write: Write EligibilityRequest data you have access to in the system
+    user/EligibilityResponse.read: Read EligibilityResponse data you have access to in the system
+    user/EligibilityResponse.write: Write EligibilityResponse data you have access to in the system
+    user/Encounter.read: Read Encounter data you have access to in the system
+    user/Encounter.write: Write Encounter data you have access to in the system
+    user/Endpoint.read: Read Endpoint data you have access to in the system
+    user/Endpoint.write: Write Endpoint data you have access to in the system
+    user/EnrollmentRequest.read: Read EnrollmentRequest data you have access to in the system
+    user/EnrollmentRequest.write: Write EnrollmentRequest data you have access to in the system
+    user/EnrollmentResponse.read: Read EnrollmentResponse data you have access to in the system
+    user/EnrollmentResponse.write: Write EnrollmentResponse data you have access to in the system
+    user/EpisodeOfCare.read: Read EpisodeOfCare data you have access to in the system
+    user/EpisodeOfCare.write: Write EpisodeOfCare data you have access to in the system
+    user/ExpansionProfile.read: Read ExpansionProfile data you have access to in the system
+    user/ExpansionProfile.write: Write ExpansionProfile data you have access to in the system
+    user/ExplanationOfBenefit.read: Read ExplanationOfBenefit data you have access to in the system
+    user/ExplanationOfBenefit.write: Write ExplanationOfBenefit data you have access to in the system
+    user/FamilyMemberHistory.read: Read FamilyMemberHistory data you have access to in the system
+    user/FamilyMemberHistory.write: Write FamilyMemberHistory data you have access to in the system
+    user/Flag.read: Read Flag data you have access to in the system
+    user/Flag.write: Write Flag data you have access to in the system
+    user/Goal.read: Read Goal data you have access to in the system
+    user/Goal.write: Write Goal data you have access to in the system
+    user/GraphDefinition.read: Read GraphDefinition data you have access to in the system
+    user/GraphDefinition.write: Write GraphDefinition data you have access to in the system
+    user/Group.read: Read Group data you have access to in the system
+    user/Group.write: Write Group data you have access to in the system
+    user/GuidanceResponse.read: Read GuidanceResponse data you have access to in the system
+    user/GuidanceResponse.write: Write GuidanceResponse data you have access to in the system
+    user/HealthcareService.read: Read HealthcareService data you have access to in the system
+    user/HealthcareService.write: Write HealthcareService data you have access to in the system
+    user/ImagingManifest.read: Read ImagingManifest data you have access to in the system
+    user/ImagingManifest.write: Write ImagingManifest data you have access to in the system
+    user/ImagingStudy.read: Read ImagingStudy data you have access to in the system
+    user/ImagingStudy.write: Write ImagingStudy data you have access to in the system
+    user/Immunization.read: Read Immunization data you have access to in the system
+    user/Immunization.write: Write Immunization data you have access to in the system
+    user/ImmunizationRecommendation.read: Read ImmunizationRecommendation data you have access to in the system
+    user/ImmunizationRecommendation.write: Write ImmunizationRecommendation data you have access to in the system
+    user/ImplementationGuide.read: Read ImplementationGuide data you have access to in the system
+    user/ImplementationGuide.write: Write ImplementationGuide data you have access to in the system
+    user/Library.read: Read Library data you have access to in the system
+    user/Library.write: Write Library data you have access to in the system
+    user/Linkage.read: Read Linkage data you have access to in the system
+    user/Linkage.write: Write Linkage data you have access to in the system
+    user/List.read: Read List data you have access to in the system
+    user/List.write: Write List data you have access to in the system
+    user/Location.read: Read Location data you have access to in the system
+    user/Location.write: Write Location data you have access to in the system
+    user/Measure.read: Read Measure data you have access to in the system
+    user/Measure.write: Write Measure data you have access to in the system
+    user/MeasureReport.read: Read MeasureReport data you have access to in the system
+    user/MeasureReport.write: Write MeasureReport data you have access to in the system
+    user/Media.read: Read Media data you have access to in the system
+    user/Media.write: Write Media data you have access to in the system
+    user/Medication.read: Read Medication data you have access to in the system
+    user/Medication.write: Write Medication data you have access to in the system
+    user/MedicationAdministration.read: Read MedicationAdministration data you have access to in the system
+    user/MedicationAdministration.write: Write MedicationAdministration data you have access to in the system
+    user/MedicationDispense.read: Read MedicationDispense data you have access to in the system
+    user/MedicationDispense.write: Write MedicationDispense data you have access to in the system
+    user/MedicationRequest.read: Read MedicationRequest data you have access to in the system
+    user/MedicationRequest.write: Write MedicationRequest data you have access to in the system
+    user/MedicationStatement.read: Read MedicationStatement data you have access to in the system
+    user/MedicationStatement.write: Write MedicationStatement data you have access to in the system
+    user/MessageDefinition.read: Read MessageDefinition data you have access to in the system
+    user/MessageDefinition.write: Write MessageDefinition data you have access to in the system
+    user/MessageHeader.read: Read MessageHeader data you have access to in the system
+    user/MessageHeader.write: Write MessageHeader data you have access to in the system
+    user/NamingSystem.read: Read NamingSystem data you have access to in the system
+    user/NamingSystem.write: Write NamingSystem data you have access to in the system
+    user/NutritionOrder.read: Read NutritionOrder data you have access to in the system
+    user/NutritionOrder.write: Write NutritionOrder data you have access to in the system
+    user/Observation.read: Read Observation data you have access to in the system
+    user/Observation.write: Write Observation data you have access to in the system
+    user/OperationDefinition.read: Read OperationDefinition data you have access to in the system
+    user/OperationDefinition.write: Write OperationDefinition data you have access to in the system
+    user/OperationOutcome.read: Read OperationOutcome data you have access to in the system
+    user/OperationOutcome.write: Write OperationOutcome data you have access to in the system
+    user/Organization.read: Read Organization data you have access to in the system
+    user/Organization.write: Write Organization data you have access to in the system
+    user/Parameters.read: Read Parameters data you have access to in the system
+    user/Parameters.write: Write Parameters data you have access to in the system
+    user/Patient.read: Read Patient data you have access to in the system
+    user/Patient.write: Write Patient data you have access to in the system
+    user/PaymentNotice.read: Read PaymentNotice data you have access to in the system
+    user/PaymentNotice.write: Write PaymentNotice data you have access to in the system
+    user/PaymentReconciliation.read: Read PaymentReconciliation data you have access to in the system
+    user/PaymentReconciliation.write: Write PaymentReconciliation data you have access to in the system
+    user/Person.read: Read Person data you have access to in the system
+    user/Person.write: Write Person data you have access to in the system
+    user/PlanDefinition.read: Read PlanDefinition data you have access to in the system
+    user/PlanDefinition.write: Write PlanDefinition data you have access to in the system
+    user/Practitioner.read: Read Practitioner data you have access to in the system
+    user/Practitioner.write: Write Practitioner data you have access to in the system
+    user/PractitionerRole.read: Read PractitionerRole data you have access to in the system
+    user/PractitionerRole.write: Write PractitionerRole data you have access to in the system
+    user/Procedure.read: Read Procedure data you have access to in the system
+    user/Procedure.write: Write Procedure data you have access to in the system
+    user/ProcedureRequest.read: Read ProcedureRequest data you have access to in the system
+    user/ProcedureRequest.write: Write ProcedureRequest data you have access to in the system
+    user/ProcessRequest.read: Read ProcessRequest data you have access to in the system
+    user/ProcessRequest.write: Write ProcessRequest data you have access to in the system
+    user/ProcessResponse.read: Read ProcessResponse data you have access to in the system
+    user/ProcessResponse.write: Write ProcessResponse data you have access to in the system
+    user/Provenance.read: Read Provenance data you have access to in the system
+    user/Provenance.write: Write Provenance data you have access to in the system
+    user/Questionnaire.read: Read Questionnaire data you have access to in the system
+    user/Questionnaire.write: Write Questionnaire data you have access to in the system
+    user/QuestionnaireResponse.read: Read QuestionnaireResponse data you have access to in the system
+    user/QuestionnaireResponse.write: Write QuestionnaireResponse data you have access to in the system
+    user/ReferralRequest.read: Read ReferralRequest data you have access to in the system
+    user/ReferralRequest.write: Write ReferralRequest data you have access to in the system
+    user/RelatedPerson.read: Read RelatedPerson data you have access to in the system
+    user/RelatedPerson.write: Write RelatedPerson data you have access to in the system
+    user/RequestGroup.read: Read RequestGroup data you have access to in the system
+    user/RequestGroup.write: Write RequestGroup data you have access to in the system
+    user/ResearchStudy.read: Read ResearchStudy data you have access to in the system
+    user/ResearchStudy.write: Write ResearchStudy data you have access to in the system
+    user/ResearchSubject.read: Read ResearchSubject data you have access to in the system
+    user/ResearchSubject.write: Write ResearchSubject data you have access to in the system
+    user/RiskAssessment.read: Read RiskAssessment data you have access to in the system
+    user/RiskAssessment.write: Write RiskAssessment data you have access to in the system
+    user/Schedule.read: Read Schedule data you have access to in the system
+    user/Schedule.write: Write Schedule data you have access to in the system
+    user/SearchParameter.read: Read SearchParameter data you have access to in the system
+    user/SearchParameter.write: Write SearchParameter data you have access to in the system
+    user/Sequence.read: Read Sequence data you have access to in the system
+    user/Sequence.write: Write Sequence data you have access to in the system
+    user/ServiceDefinition.read: Read ServiceDefinition data you have access to in the system
+    user/ServiceDefinition.write: Write ServiceDefinition data you have access to in the system
+    user/Slot.read: Read Slot data you have access to in the system
+    user/Slot.write: Write Slot data you have access to in the system
+    user/Specimen.read: Read Specimen data you have access to in the system
+    user/Specimen.write: Write Specimen data you have access to in the system
+    user/StructureDefinition.read: Read StructureDefinition data you have access to in the system
+    user/StructureDefinition.write: Write StructureDefinition data you have access to in the system
+    user/StructureMap.read: Read StructureMap data you have access to in the system
+    user/StructureMap.write: Write StructureMap data you have access to in the system
+    user/Subscription.read: Read Subscription data you have access to in the system
+    user/Subscription.write: Write Subscription data you have access to in the system
+    user/Substance.read: Read Substance data you have access to in the system
+    user/Substance.write: Write Substance data you have access to in the system
+    user/SupplyDelivery.read: Read SupplyDelivery data you have access to in the system
+    user/SupplyDelivery.write: Write SupplyDelivery data you have access to in the system
+    user/SupplyRequest.read: Read SupplyRequest data you have access to in the system
+    user/SupplyRequest.write: Write SupplyRequest data you have access to in the system
+    user/Task.read: Read Task data you have access to in the system
+    user/Task.write: Write Task data you have access to in the system
+    user/TestReport.read: Read TestReport data you have access to in the system
+    user/TestReport.write: Write TestReport data you have access to in the system
+    user/TestScript.read: Read TestScript data you have access to in the system
+    user/TestScript.write: Write TestScript data you have access to in the system
+    user/ValueSet.read: Read ValueSet data you have access to in the system
+    user/ValueSet.write: Write ValueSet data you have access to in the system
+    user/VisionPrescription.read: Read VisionPrescription data you have access to in the system
+    user/VisionPrescription.write: Write VisionPrescription data you have access to in the system
+
+  users:
+#  Configure additional OCP test(users) as:
+#    - EmailId | password | EmailId | FirstName | LastName | <Comma saperated list of permissions>
+#  For example:  - test@ocpemail.com|AAA#aaa1|test@ocpemail.com|test|ocp|ocpUi.access,ocpUiApi.read,ocpUiApi.write
+    - scim-admin|AAA!aaa1|ocp-admin@ocpemail.com|test|ocp|openid,uaa.admin,scim.write,groups.update,zones.uaa.admin
+# The default configure properties for JWT Signing Key
+jwt:
+  token:
+    verification-key: |
+      -----BEGIN PUBLIC KEY-----
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0m59l2u9iDnMbrXHfqkO
+      rn2dVQ3vfBJqcDuFUK03d+1PZGbVlNCqnkpIJ8syFppW8ljnWweP7+LiWpRoz0I7
+      fYb3d8TjhV86Y997Fl4DBrxgM6KTJOuE/uxnoDhZQ14LgOU2ckXjOzOdTsnGMKQB
+      LCl0vpcXBtFLMaSbpv1ozi8h7DJyVZ6EnFQZUWGdgTMhDrmqevfx95U/16c5WBDO
+      kqwIn7Glry9n9Suxygbf8g5AzpWcusZgDLIIZ7JTUldBb8qU2a0Dl4mvLZOn4wPo
+      jfj9Cw2QICsc5+Pwf21fP+hzf+1WSRHbnYv8uanRO0gZ8ekGaghM/2H6gqJbo2nI
+      JwIDAQAB
+      -----END PUBLIC KEY-----
+    signing-key: |
+      -----BEGIN RSA PRIVATE KEY-----
+      MIIEowIBAAKCAQEA0m59l2u9iDnMbrXHfqkOrn2dVQ3vfBJqcDuFUK03d+1PZGbV
+      lNCqnkpIJ8syFppW8ljnWweP7+LiWpRoz0I7fYb3d8TjhV86Y997Fl4DBrxgM6KT
+      JOuE/uxnoDhZQ14LgOU2ckXjOzOdTsnGMKQBLCl0vpcXBtFLMaSbpv1ozi8h7DJy
+      VZ6EnFQZUWGdgTMhDrmqevfx95U/16c5WBDOkqwIn7Glry9n9Suxygbf8g5AzpWc
+      usZgDLIIZ7JTUldBb8qU2a0Dl4mvLZOn4wPojfj9Cw2QICsc5+Pwf21fP+hzf+1W
+      SRHbnYv8uanRO0gZ8ekGaghM/2H6gqJbo2nIJwIDAQABAoIBAHPV9rSfzllq16op
+      zoNetIJBC5aCcU4vJQBbA2wBrgMKUyXFpdSheQphgY7GP/BJTYtifRiS9RzsHAYY
+      pAlTQEQ9Q4RekZAdd5r6rlsFrUzL7Xj/CVjNfQyHPhPocNqwrkxp4KrO5eL06qcw
+      UzT7UtnoiCdSLI7IL0hIgJZP8J1uPNdXH+kkDEHE9xzU1q0vsi8nBLlim+ioYfEa
+      Q/Q/ovMNviLKVs+ZUz+wayglDbCzsevuU+dh3Gmfc98DJw6n6iClpd4fDPqvhxUO
+      BDeQT1mFeHxexDse/kH9nygxT6E4wlU1sw0TQANcT6sHReyHT1TlwnWlCQzoR3l2
+      RmkzUsECgYEA8W/VIkfyYdUd5ri+yJ3iLdYF2tDvkiuzVmJeA5AK2KO1fNc7cSPK
+      /sShHruc0WWZKWiR8Tp3d1XwA2rHMFHwC78RsTds+NpROs3Ya5sWd5mvmpEBbL+z
+      cl3AU9NLHVvsZjogmgI9HIMTTl4ld7GDsFMt0qlCDztqG6W/iguQCx8CgYEA3x/j
+      UkP45/PaFWd5c1DkWvmfmi9UxrIM7KeyBtDExGIkffwBMWFMCWm9DODw14bpnqAA
+      jH5AhQCzVYaXIdp12b+1+eOOckYHwzjWOFpJ3nLgNK3wi067jVp0N0UfgV5nfYw/
+      +YoHfYRCGsM91fowh7wLcyPPwmSAbQAKwbOZKfkCgYEAnccDdZ+m2iA3pitdIiVr
+      RaDzuoeHx/IfBHjMD2/2ZpS1aZwOEGXfppZA5KCeXokSimj31rjqkWXrr4/8E6u4
+      PzTiDvm1kPq60r7qi4eSKx6YD15rm/G7ByYVJbKTB+CmoDekToDgBt3xo+kKeyna
+      cUQqUdyieunM8bxja4ca3ukCgYAfrDAhomJ30qa3eRvFYcs4msysH2HiXq30/g0I
+      aKQ12FSjyZ0FvHEFuQvMAzZM8erByKarStSvzJyoXFWhyZgHE+6qDUJQOF6ruKq4
+      DyEDQb1P3Q0TSVbYRunOWrKRM6xvJvSB4LUVfSvBDsv9TumKqwfZDVFVn9yXHHVq
+      b6sjSQKBgDkcyYkAjpOHoG3XKMw06OE4OKpP9N6qU8uZOuA8ZF9ZyR7vFf4bCsKv
+      QH+xY/4h8tgL+eASz5QWhj8DItm8wYGI5lKJr8f36jk0JLPUXODyDAeN6ekXY9LI
+      fudkijw0dnh28LJqbkFF5wLNtATzyCfzjp+czrPMn9uqLNKt/iVD
+      -----END RSA PRIVATE KEY-----
