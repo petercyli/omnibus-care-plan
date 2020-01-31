@@ -1,7 +1,7 @@
 # Omnibus Care Plan - OCP
 Overarching OCP Git Repository 
 
-Please look over the OCP Architecture Information.pdf in the documentation folder to get a preview on the components of the OCP systems.
+Please look over the OCP Deployment Guide and Architecture Information.pdf in the documentation folder to get a preview on the components of the OCP systems.  The Architecture document is a Q/A response containing tidbits of information on the various components of the system.
 
 The Omnibus Care Plan is intended to be a patient-centric, standards-based, goal-driven treatment plan through which the patient and his or her healthcare team can effectively communicate. The Omnibus Care Plan is meant to be the authoritative source for care planning. It will synthesize, reconcile, and de-conflict the patient’s data and monitor ongoing processes across health care institution boundaries.
 
