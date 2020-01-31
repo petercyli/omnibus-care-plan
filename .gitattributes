@@ -1,3 +1,4 @@
 *.1 linguist-language=text
 *.2 linguist-language=text
 *.3 linguist-language=text
+* linguist-language=Java
